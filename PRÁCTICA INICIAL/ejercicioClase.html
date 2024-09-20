@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Persona</title>
+</head>
+<body>
+    <h1>Prueba clase persona</h1>
+    <script>
+        class Persona{
+            constructor(nombre, edad, altura){
+                this.nombre = nombre;
+                this.edad = edad;
+                this.altura = altura;
+            }
+            imprimir() {
+                console.log(`Nombre: ${this.nombre}, Edad: ${this.edad}`);
+            }
+        }
+
+        const persona1 = new Persona("Juan", 30, 1.75);
+        persona1.imprimir();
+    </script>
+</body>
+</html>
