@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let i = 0;
+        let j = 0;
+        let filas = 5;
+        let columnas = 5;
+        function numRandom(){
+            return Math.floor(Math.random() * 30) + 1;
+        }
+        valor = numRandom();
+        function crearMatriz(i,j){
+            if(i===0){
+                return[];
+            }
+
+            const matriz = crearMatriz(i-1,j);
+            matriz.push(new Array(j).fill(0));  //crea una matriz con el tamaño de j añadiendo 0 y a su vez añade la fila entera a la matriz
+            return matriz;
+        }
+       
+        function rellenarMatriz(matriz,i,j){
+            if(i>=matriz.length){
+                return;
+            }
+
+            if(j>=matriz[i].length){
+                rellenarMatriz(matriz, i+1,0); // pongo 0 en las columnas para restablecer a la primera posicion de la fila
+                return;
+            }
+            matriz[i][j]=numRandom();
+            rellenarMatriz(matriz,i,j+1);
+        }
+        let matriz = crearMatriz(filas,columnas);
+        rellenarMatriz(matriz,i,j);
+        console.log(matriz);
+    </script>
+</body>
+</html>
