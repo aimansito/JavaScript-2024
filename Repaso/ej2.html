@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cambio de imágenes con JavaScript</h1>
+    <img id="messi" onclick="cambiaPic()" src="./img/messi.jpg"
+        width="100" height="180">
+    <p>Haz click sobre las letras para cambiarlas.</p>
+    <script>
+        let currentImageIndex = 0; // Índice para rastrear la imagen actual
+
+        function cambiaPic() {
+            var image = document.getElementById('messi');
+            const images = [
+                "./img/messi.jpg",
+                "./img/messi2.jpg",
+                "./img/messi3.jpg",
+                "./img/messi4.jpg"
+            ];
+
+            // Cambiar a la siguiente imagen
+            currentImageIndex++;
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0; // Reiniciar el índice si supera el número de imágenes
+            }
+
+            // Cambiar la fuente de la imagen
+            image.src = images[currentImageIndex];
+        }
+    </script>
+</body>
+</html>

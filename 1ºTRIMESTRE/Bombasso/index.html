@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>BOMBASSO</h2>
+    <p> Se pide que crees un programa que genere un campo de minas.
+    Las minas se colocan de forma aleatoria pero teniendo
+    en cuenta que no se deben colocar dos minas juntas.
+    realiza el programa para que genere 10, 20 o todas
+    las minas que se puedan instalar.
+    </p>
+    <p id="demo"></p>
+    <script>
+    var arr = [[" "," "," "," "," "," "," "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "," "," "," "," "," "," "]
+
+    ];
+    function generateRandomInt(min,max){
+    return Math.floor((Math.random() * (max-min+1)) +min);
+    }
+    let i = generateRandomInt(0,arr.length);
+    let j = arr[i].length;
+    minas = 20; 
+    minasColocadas = 0;
+    for(i=0;i<arr.length;i++){
+       for(j=0;j<arr[i].length;j++){
+           
+       }
+    }
+    do{
+        let i = generateRandomInt(0,arr.length-1);
+        let j = generateRandomInt(0,arr[i].length-1);
+        if((i===0||arr[i-1][j]===" ")&&(i===arr.length-1||arr[i+1][j]===" ")&&
+        (j===0||arr[i][j-1]=== " ")&&(j===arr[i].length-1||arr[i][j+1]===" ")){
+            arr[i][j]="*";
+            minasColocadas++;
+        }
+    }while(minasColocadas<minas);
+    
+    console.log(arr);
+    /*COLOCA AQUÍ TU CÓDIGO*/
+    </script>
+</body>
+</html>
