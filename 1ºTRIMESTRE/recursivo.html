@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Encuentra cuantas veces aparece un número en un array multidimensional</h1>
+    <script>
+    let i = 0;
+    let j = 0;
+    let contador = 0;
+    function isArray(value) {
+        return Array.isArray(value);
+    }
+    let numeros = [1,[2,3,4],[8,15,[5,2]],27];
+        function recursivo(numeros,i,j,contador){
+            /*if(i>=numeros.length){
+                console.log('No hay más espacios');
+            }
+            if(i>=numeros[i].length){
+                if(isArray(numeros[i][j])){
+                    console.log("Es un array");
+                }else{
+                    console.log("No es un array");
+                }
+            }
+            i++;
+            j++;
+            recursivo(numeros,i,j);
+            */
+            /*if(numeros[i][j]==1){
+                contador++;
+            }
+            recursivo(numeros,i+1,j+1);
+            */
+           if(i>=numeros.length){
+                return contador++;
+           }
+           if(j>=numeros[i].length){
+                return recursivo(numeros,i+1,0,contador);
+           }
+            if(numeros[i][j] = 1){
+                contador++;
+            }
+            return recursivo(numeros,i+1,j+1,contador);
+        }
+
+    let resultado = recursivo(numeros,i,j,contador);
+    console.log(resultado);
+    </script>
+</body>
+</html>
