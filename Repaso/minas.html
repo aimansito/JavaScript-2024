@@ -28,9 +28,11 @@
                        //colocar 2 en celdas diagonales
                        if(i-1 >=0 && j + 1 < long){
                         minas[i-1][j+1]=2;//diagonal arriba derecha
+                        minas[i-1][j-1]=2;
                        }
                        if(i-1 >= 0 && j-1 < long){
-                        minas[i-1][j+1]=2;
+                        minas[i-1][j-1]=2;
+                        minas[i-1][j]=2;
                        }
                        if(i+1 < longitud && j-1>=0){
                         minas[i+1][j-1]=2;//diagonal abajo izquierda
