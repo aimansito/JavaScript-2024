@@ -11,13 +11,16 @@
         var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
         let num = 12345678;
         const numDNI = 23;
+
+
         function calcularLetra(num){
             let letra ;
             let dni ;
-            if(num<0 || num>99999999){
+            if(num>=0 && num<=99999999){
                letra =  num % numDNI ;
-               dni = num.letras[letra];
-               return dni;
+               return num+letras[letra];
+            }else{
+                return "Número fuera de rango"; 
             }
         }
         let resultado =  calcularLetra(num);

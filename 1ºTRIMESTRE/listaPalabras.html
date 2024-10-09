@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Realiza un programa el cual reciba un texto determinado y muestre una lista de las palabras introducidas de forma alfabética junto con el número de veces que aparece esa palabra.
+            Se obviará todo lo que no sea una palabra como puntos, comas, etc.
+        */
+        let text = "Hola soy aiman, aiman 20 años aiman años años";
+        let text2;
+        let i = 0;
+        let j = 0;
+        let texto;
+        let index = 0;
+        let mat = [];
+        function listaPalabras(text) {
+            text2 = text.replace(/[.,]/g, '');
+            let palabras = text2.split(" ");
+            palabras.sort();
+            return palabras;
+        }
+        texto = listaPalabras(text);
+        console.log(texto)
+        console.log(texto.length);
+
+        function rellenaMatriz2(texto) {
+            let i = 0;
+            let palabra = texto[i]
+            let cuantos = 0
+            while (i < texto.length) {
+                if (texto[i] == palabra) {
+                    cuantos++
+                } else {
+                    let obj = [palabra, cuantos]
+                    mat[mat.length] = obj
+                    palabra = texto[i]
+                    cuantos = 1
+                }
+                i++
+            }
+            if (texto.length > 0) {
+                let obj = [palabra, cuantos]
+                mat[mat.length] = obj
+
+            }
+        }
+        rellenaMatriz2(texto)
+        console.log(mat)
+        /*
+        function rellenarMatriz(texto){
+            let matriz = [];
+            for(i=0;i<texto.length;i++){
+                matriz[i] = [];
+                for(j=0;j<texto.length;j++){
+                    if(index < texto.length){
+                        matriz[i][j] = texto[index];
+                        
+                        index++;
+                    }
+                }
+            }
+            return matriz;
+        }
+    
+    
+    
+        mat = rellenarMatriz(texto);
+        for(i=0;i<mat.length;i++){
+            for(j=0;j<mat[i].length;j++){
+               console.log(mat[i][j]);
+            }
+        }
+        for(i=0;i<mat.length;i++){
+            for(j=0;j<mat[i].length;j++){
+                
+            }
+        }
+        */
+    </script>
+</body>
+</html>

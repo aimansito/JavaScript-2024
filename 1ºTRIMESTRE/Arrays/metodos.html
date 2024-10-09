@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let frutas = ["naranja", "banana","kiwi"];
+        frutas.push("manzana");
+        console.log(frutas);
+        frutas.shift();//borra el primer elemento del array
+        frutas.unshift("sandía");
+        console.log(frutas);
+        //filtrar por algun parametro
+        let frutasConA = frutas.filter(fruta=> fruta.includes("a"));
+        console.log(frutasConA)
+        //juntar dos arrays
+        let todasLasFrutas = frutas.concat(frutas2);
+        //darle la vuelta al array
+        frutas.reverse();
+        console.log(frutas)
+        //ordenar el array
+        frutas.sort;
+    </script>
+</body>
+</html>
