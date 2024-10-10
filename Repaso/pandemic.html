@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="txt"><p>
+
+    <script>
+        //var x =
+        //x = JSON.parse (JSON.stringify(x));
+        let array = [['P','P','G','H','H','R'],['P','P','G','H','H','G'],['P','G','R','H','H','G'],['G','R','R','H','G','G'],['R','R','H','H','G','P']];
+        let i = 0;
+        let j = 0;
+        let resultado ;
+
+        function pandemic(array){
+            for(i=0;i<array.length;i++){
+                for(j=0;j<array[i].length;j++){
+                    if(array[i][j]==='H'){
+                        delete array[i][j];
+                        delete array[i-1][j+1];
+                    }
+                }
+            }
+            return array;
+        }
+        resultado = pandemic(array);
+        console.log(resultado);
+        // INCLUYE TU CÓDIGO AQUÍ
+    </script>
+</body>
+</html>
