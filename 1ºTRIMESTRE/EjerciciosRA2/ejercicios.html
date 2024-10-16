@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+                var matriz = [
+                ["P", "P", "G", "H", "H", "R"],
+                ["P", "P", "G", "H", "H", "G"],
+                ["P", "G", "M", "H", "H", "G"],
+                ["G", "R", "M", "H", "G", "G"],
+                ["R", "R", "H", "H", "G", "P"]
+            ];
+
+            var matriz2 = JSON.parse(JSON.stringify(matriz));
+
+            let murcielagosEnfurecidos = (fila, columna) => {
+                console.log(fila + " " + columna);
+                let filaOriginal = fila - 1;
+                let columnaOriginal = columna - 1;
+
+                if (filaOriginal < 0 || filaOriginal >= matriz2.length || columnaOriginal < 0 || columnaOriginal >= matriz2[filaOriginal].length) {
+                    return;
+                }
+
+                let pila = [[filaOriginal, columnaOriginal]];
+
+                while (pila.length > 0) {
+                    let [filaActual, columnaActual] = pila.pop(); // Sacamos la última posición de la pila
+                    let valorActual = matriz2[filaActual][columnaActual];
+                    console.log(valorActual);
+
+                    if (valorActual === "H") {
+                        matriz2[filaActual][columnaActual] = " ";
+                    } else if (valorActual === "M") {
+                        matriz2[filaActual][columnaActual] = "m";
+                    } else {
+                        return; 
+                    }
+
+                    if (filaActual - 1 >= 0 && (matriz2[filaActual - 1][columnaActual] === "H" || matriz2[filaActual - 1][columnaActual] === "M")) {
+                        pila.push([filaActual - 1, columnaActual]); // Arriba
+                    }
+                    if (filaActual + 1 < matriz2.length && (matriz2[filaActual + 1][columnaActual] === "H" || matriz2[filaActual + 1][columnaActual] === "M")) {
+                        pila.push([filaActual + 1, columnaActual]); // Abajo
+                    }
+                    if (columnaActual - 1 >= 0 && (matriz2[filaActual][columnaActual - 1] === "H" || matriz2[filaActual][columnaActual - 1] === "M")) {
+                        pila.push([filaActual, columnaActual - 1]); // Izquierda
+                    }
+                    if (columnaActual + 1 < matriz2[filaActual].length && (matriz2[filaActual][columnaActual + 1] === "H" || matriz2[filaActual][columnaActual + 1] === "M")) {
+                        pila.push([filaActual, columnaActual + 1]); // Derecha
+                    }
+                }
+            }
+
+            // Llamamos a la función
+            murcielagosEnfurecidos(3, 3);
+            console.log(matriz);
+            console.log(matriz2);
+
+    </script>
+</body>
+</html>
