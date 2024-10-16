@@ -7,21 +7,23 @@
 </head>
 <body>
     <script>
-        var arr1 = [1,4,6,8,9,45,8,6,4,15,98,45,15];
-        /* INCLUYE AQUÍ TU PROGRAMA*/
-        let i ;
-        let j ;
-        for(i=0;i<arr1.length;i++){
-            let repetido = false;
-            for(j=0;j<i;j++){
-                if(arr1[i]===arr1[j]){
-                    repetido = true;
-                    break;
-                }
+        var arr1 = [1, 4, 6, 8, 9, 45, 8, 6, 4, 15, 98, 45, 15];
+    
+        // Creamos un nuevo arreglo donde almacenaremos solo los valores únicos
+        var unicos = [];
+    
+        // Recorremos el arreglo original
+        for (var i = 0; i < arr1.length; i++) {
+            // Verificamos si el valor actual ya existe en el arreglo de únicos
+            if (unicos.indexOf(arr1[i]) === -1) {
+                // Si no existe, lo agregamos
+                unicos.push(arr1[i]);
             }
-            if(!repetido){
-                console.log(arr1[i]);
-            }
+        }
+    
+        // Imprimimos los valores únicos
+        for (var i = 0; i < unicos.length; i++) {
+            console.log(unicos[i]);
         }
     </script>
 </body>
