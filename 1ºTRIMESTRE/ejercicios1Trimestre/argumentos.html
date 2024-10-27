@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function calcula(...args) {
+        // Si se pasa solo un argumento, devuelve el cubo del número
+        if (args.length === 1) {
+          return Math.pow(args[0], 3);
+        }
+        // Si se pasan dos argumentos, devuelve la multiplicación de ambos
+        else if (args.length === 2) {
+          return args[0] * args[1];
+        }
+        // Si se pasan tres argumentos, devuelve la suma de los tres
+        else if (args.length === 3) {
+          return args[0] + args[1] + args[2];
+        }
+        // Si se pasan más de tres o menos de uno, se devuelve un mensaje
+        else {
+          return "Introduce entre 1 y 3 parámetros";
+        }
+      }
+
+      // Ejemplos de uso
+      console.log(calcula(5)); // Resultado: 125 (5^3)
+      console.log(calcula(5, 5)); // Resultado: 25 (5 * 5)
+      console.log(calcula(5, 5, 5)); // Resultado: 15 (5 + 5 + 5)
+    </script>
+  </body>
+</html>

@@ -24,7 +24,16 @@
             }
         }
         let resultado =  calcularLetra(num);
+        function comprobarDNI(resultado){
+            for(let i = 0;i<letras.length;i++){
+                if(resultado.charAt(8)===letras[i]){
+                    return "Si equivale";
+                }
+            }
+        }
+        let resultado2 = comprobarDNI(resultado);
         console.log(resultado);
+        console.log(resultado2);
     </script>
 </body>
 </html>
