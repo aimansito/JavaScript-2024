@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutas</title>
+</head>
+<body>
+    <h1>Frutas</h1>
+    <button onclick="mostrarFruta()">Mostrar</button>
+    <ul id="frutas"></ul>
+    <script>
+        var frutas = ['manzanas','naranjas','peras','banana'];
+        function mostrarFruta(){
+            frutas.map(f =>{
+                var linea = document.createElement("li");
+                var cont = document.createTextNode(f);
+                linea.appendChild(cont);
+                document.getElementById("frutas").appendChild(linea);
+            })
+        }
+    </script>
+</body>
+</html>
