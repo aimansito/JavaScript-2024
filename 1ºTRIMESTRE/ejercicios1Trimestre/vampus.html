@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Vampiro</title>
+  </head>
+  <body>
+    <h1>ARRAY VAMPIRO</h1>
+    <p id="array"></p>
+    <p id="vampiro"></p>
+
+    <script>
+      let arr = [1, 2, 3, 2, 5, 3, 5, 4, 3, 2, 1];
+
+      function vampus(arr) {
+        let bol = true;
+        for (let i = 0; i < arr.length / 2; i++) {
+          if (arr[i] !== arr[arr.length - 1 - i]) {
+            bol = false;
+            break; // Salimos del bucle si encontramos un par desigual
+          }
+        }
+        return bol; // Devuelve el valor booleano
+      }
+
+      let resultado = vampus(arr);
+
+      // Mostrar el resultado como un mensaje claro
+      if (resultado) {
+        document.getElementById("vampiro").innerHTML = "El array es vampiro.";
+      } else {
+        document.getElementById("vampiro").innerHTML =
+          "El array no es vampiro.";
+      }
+
+      // Mostrar el array
+      document.getElementById("array").innerHTML = "Array: " + arr.join(", ");
+      console.log(resultado);
+    </script>
+  </body>
+</html>

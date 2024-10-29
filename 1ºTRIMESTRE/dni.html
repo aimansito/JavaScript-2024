@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Introduce el DNI</h1>
+    <input type="text" id="texto" />
+    <button type="button" onclick="procesarDNI()">Enviar</button>
+    <script>
+      function procesarDNI() {
+        var letras = [
+          "T",
+          "R",
+          "W",
+          "A",
+          "G",
+          "M",
+          "Y",
+          "F",
+          "P",
+          "D",
+          "X",
+          "B",
+          "N",
+          "J",
+          "Z",
+          "S",
+          "Q",
+          "V",
+          "H",
+          "L",
+          "C",
+          "K",
+          "E",
+          "T",
+        ];
+        const dni = document.getElementById("texto").value.toUpperCase();
+
+        if (dni.length !== 9) {
+          alert("El dni debe tener 8 números seguidos de una letra");
+          return;
+        }
+
+        const numeros = dni.slice(0, 8);
+        const letra = dni.slice(8);
+
+        //validar que los primeros 8 caracteres sean números
+        if (!/^\d{8}$/.test(numeros)) {
+          alert("Los primeros 8 caracteres deben ser números.");
+          return;
+        }
+
+        const indice = parseInt(numeros) % 23;
+        const letraCorrecta = letras[indice];
+
+        //comparar la letra ingresada con la correcta
+        if (letraCorrecta === letra) {
+          alert("El DNI es válido. ");
+        } else {
+          alert(
+            "El DNI es incorrecto. La letra debería ser : ${letraCorrecta}"
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

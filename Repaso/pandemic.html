@@ -4,32 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .h{
+            color:yellow;
+        }
+        .r{
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <p id="txt"><p>
+    <p><strong>Matriz inicial</strong></p>
+    <p id="matriz1"></p>
+
+    <p><strong>Foco de infección</strong></p>
+    <p id="matriz2"></p>
+
+    <p><strong>Resultado final:</strong></p>
+    <p id="matriz3"></p>
 
     <script>
-        //var x =
-        //x = JSON.parse (JSON.stringify(x));
-        let array = [['P','P','G','H','H','R'],['P','P','G','H','H','G'],['P','G','R','H','H','G'],['G','R','R','H','G','G'],['R','R','H','H','G','P']];
-        let i = 0;
-        let j = 0;
-        let resultado ;
-
-        function pandemic(array){
-            for(i=0;i<array.length;i++){
-                for(j=0;j<array[i].length;j++){
-                    if(array[i][j]==='H'){
-                        delete array[i][j];
-                        delete array[i-1][j+1];
-                    }
+        let biocenosis = [['P', 'P', 'G', 'H', 'H', 'R'], ['P', 'P', 'G', 'H', 'H', 'G'], ['P', 'G', 'R', 'H', 'H', 'G'],
+        ['G', 'R', 'R', 'H', 'G', 'G'], ['R', 'R', 'H', 'H', 'G', 'P']];
+        // Imprimimos el array
+        imprimir (biocenosis, "matriz1");
+        // Para identificar el primer elemento que le pasamos a la función pandemic
+        // Para ponerlo en rojo
+        let fila = undefined; 
+        let columna = undefined;
+        // Función para identificar el foco de infección
+        function pandemic(x, y) {
+            // Si fila y columna no están definidas (es la primera vez que llamamos a la función)
+            if (fila == undefined && columna == undefined) {
+                fila = x-1; 
+                columna = y-1;
+            }
+            // Si es un murciélago
+            if (biocenosis[x - 1][y - 1] == 'M' ) {
+                // Se infecta, lo ponemos en minúscula
+                biocenosis[x - 1][y - 1] = 'm';
+                // Si no se sale de la matriz al sumar una fila
+                if ((x-1) >= 0 && (x-1) < biocenosis.length - 1 ) {
+                    pandemic(x + 1, y);
+                }
+                // Si no se sale de la matriz al restar una fila
+                if ((x-1) > 0 && (x-1) <= biocenosis.length - 1 ) {
+                    pandemic(x - 1, y);
+                }
+                // Si no se sale de la matriz al sumar una columna
+                if ((y-1) >= 0 && (y-1) < biocenosis[x-1].length - 1) {
+                    pandemic(x, y + 1);
+                } 
+                // Si no se sale de la matriz al restar una columna
+                if ((y-1) > 0 && (y-1) <= biocenosis[x-1].length - 1) {
+                    pandemic(x, y - 1);
+                }
+            // Si es un humano
+            } else if (biocenosis[x - 1][y - 1] == 'H') {
+                // Se infecta y muere
+                biocenosis[x - 1][y - 1] = '&nbsp;&nbsp;&nbsp;';
+                // Si no se sale de la matriz al sumar una fila
+                if ((x-1) >= 0 && (x-1) < biocenosis.length - 1 ) {
+                    pandemic(x + 1, y);
+                }
+                // Si no se sale de la matriz al restar una fila
+                if ((x-1) > 0 && (x-1) <= biocenosis.length - 1 ) {
+                    pandemic(x - 1, y);
+                }
+                // Si no se sale de la matriz al sumar una columna
+                if ((y-1) >= 0 && (y-1) < biocenosis[x-1].length - 1) {
+                    pandemic(x, y + 1);
+                } 
+                // Si no se sale de la matriz al restar una columna
+                if ((y-1) > 0 && (y-1) <= biocenosis[x-1].length - 1) {
+                    pandemic(x, y - 1);
+                }
+            // Si es un perro, un gato, una rata o alguien ya infectado
+            } else {
+                return 0;
+            }
+        }
+        // Infectamos al 4, 3
+        pandemic(5, 3);
+        // Imprimimos el foco de infección
+        for (let i = 0; i < biocenosis.length; i++) {
+            for (let j = 0; j < biocenosis[i].length; j++) {
+                if (biocenosis[i][j] == '&nbsp;&nbsp;&nbsp;') {
+                    document.getElementById("matriz2").innerHTML += 
+                    "<span class='h'> H </span> &nbsp;&nbsp;";
+                } else if (i == fila && j == columna){
+                    document.getElementById("matriz2").innerHTML += 
+                    "<span class='r'>" + biocenosis[i][j] + "</span>&nbsp;&nbsp;&nbsp;";
+                }else {
+                    document.getElementById("matriz2").innerHTML += biocenosis[i][j] + "&nbsp;&nbsp;&nbsp;";
                 }
             }
-            return array;
+            document.getElementById("matriz2").innerHTML += "<br>";
         }
-        resultado = pandemic(array);
-        console.log(resultado);
-        // INCLUYE TU CÓDIGO AQUÍ
+        // Imprimimos el resultado
+        imprimir (biocenosis, "matriz3");
+        // Función para imprimir
+        function imprimir (array, id) {
+            for (let i = 0; i < array.length; i++) {
+                for (let j = 0; j < array[i].length; j++) {
+                    document.getElementById(id).innerHTML += array[i][j] + "&nbsp;&nbsp;&nbsp;";
+                }
+                document.getElementById(id).innerHTML += "<br>";
+            }
+        }
     </script>
 </body>
 </html>
