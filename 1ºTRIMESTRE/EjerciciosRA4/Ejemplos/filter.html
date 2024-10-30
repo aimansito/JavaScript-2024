@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejemplos de Array Filter</title>
+  </head>
+  <body>
+    <h1>Ejemplos de Uso del Método filter()</h1>
+    <p>Abre la consola del navegador para ver los resultados.</p>
+
+    <script>
+      // Ejemplo 1: Filtrar números mayores a 3
+      const numeros = [1, 2, 3, 4, 5, 6];
+
+      // Usamos filter para devolver sólo los números mayores a 3
+      const mayoresA3 = numeros.filter(function (num) {
+        return num > 3;
+      });
+
+      console.log("Números mayores a 3:", mayoresA3);
+      // Output: [4, 5, 6]
+
+      // Ejemplo 2: Filtrar números pares
+      const pares = numeros.filter(function (num) {
+        return num % 2 === 0; // Condición: ser divisible por 2
+      });
+
+      console.log("Números pares:", pares);
+      // Output: [2, 4, 6]
+
+      // Ejemplo 3: Filtrar palabras que contienen una letra específica
+      const palabras = ["manzana", "pera", "mango", "fresa", "melón"];
+
+      // Filtramos las palabras que contienen la letra 'a'
+      const contieneLetraA = palabras.filter(function (palabra) {
+        return palabra.includes("a");
+      });
+
+      console.log("Palabras que contienen la letra 'a':", contieneLetraA);
+      // Output: ["manzana", "mango", "fresa"]
+
+      // Ejemplo 4: Filtrar objetos en un array de objetos
+      const personas = [
+        { nombre: "Ana", edad: 25 },
+        { nombre: "Luis", edad: 18 },
+        { nombre: "Carla", edad: 30 },
+        { nombre: "Miguel", edad: 15 },
+      ];
+
+      // Filtramos las personas mayores de edad
+      const mayoresDeEdad = personas.filter(function (persona) {
+        return persona.edad >= 18;
+      });
+
+      console.log("Personas mayores de edad:", mayoresDeEdad);
+      // Output: [{ nombre: "Ana", edad: 25 }, { nombre: "Luis", edad: 18 }, { nombre: "Carla", edad: 30 }]
+
+      // Ejemplo 5: Filtrar valores únicos de un array con filter y indexOf
+      const duplicados = [1, 2, 3, 3, 4, 5, 5, 6];
+
+      // Filtramos para quedarnos solo con valores únicos
+      const unicos = duplicados.filter((valor, indice, array) => {
+        return array.indexOf(valor) === indice;
+      });
+
+      console.log("Valores únicos:", unicos);
+      // Output: [1, 2, 3, 4, 5, 6]
+
+      // Ejemplo 6: Filtrar valores falsy (falso, null, undefined, 0) de un array
+      const valoresMixtos = [
+        0,
+        "texto",
+        false,
+        undefined,
+        "",
+        42,
+        null,
+        "otro texto",
+      ];
+
+      // Filtramos solo los valores "verdaderos" (truthy)
+      const valoresTruthy = valoresMixtos.filter(Boolean);
+
+      console.log("Valores truthy:", valoresTruthy);
+      // Output: ["texto", 42, "otro texto"]
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <h1>Sumar números</h1>
+    <input type="text" id="num" placeholder="Introduce un número"/>
+    <button onclick="mostrarResultado()">Sumar</button>
+    <p id="result"></p>
+    <script>
+        function sumarNumeros(n) {
+            // Caso base: si n es 0, devolvemos 0
+            if (n === 0) {
+                return 0;
+            } else {
+                // Llamada recursiva sumando el número actual n
+                return n + sumarNumeros(n - 1);
+            }
+        }
+
+        function mostrarResultado() {
+            // Obtener el valor ingresado como número entero
+            let n = parseInt(document.getElementById("num").value);
+            
+            // Validar que el valor sea un número no negativo
+            if (isNaN(n) || n < 0) {
+                document.getElementById("result").innerHTML = "Por favor, introduce un número válido.";
+            } else {
+                // Llamar a la función recursiva y mostrar el resultado en el <p>
+                let resultado = sumarNumeros(n);
+                document.getElementById("result").innerHTML = `Resultado: ${resultado}`;
+            }
+        }
+    </script>
+</body>
+</html>

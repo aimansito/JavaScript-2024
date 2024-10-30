@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <script>
+        let array = [1,2,4,3,5,3];
+        let elemento = 4;
+        function recorrerArray(array,i){
+            if(i!==array.length){
+                if(elemento===array[i]){
+                    console.log("El elemento se encuentra en la posición: "+i);
+                }else{
+                    recorrerArray(array,i+1);
+                }
+            }
+        }
+        recorrerArray(array,0);
+    </script>    
+</body>
+</html>

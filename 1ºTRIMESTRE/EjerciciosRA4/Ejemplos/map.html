@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Tenemos el array definido de la siguiente manera: let numeros = [1, 2, 3,
+      4, 5, 6, 7]; cuando pulses el botón, aparecerán los mismos números
+      incrementados en uno.
+    </p>
+    <!-- Párrafos separados para cada resultado -->
+    <p id="resultado1">Resultado 1:</p>
+    <p id="resultado2">Resultado 2:</p>
+    <p id="resultado3">Resultado 3:</p>
+    <!-- Botón para ejecutar la función -->
+    <button onclick="dale()">Ejecuta</button>
+
+    <script>
+      // Array inicial
+      let numeros = [1, 2, 3, 4, 5, 6, 7];
+
+      // Función que se ejecuta al pulsar el botón
+      function dale() {
+        // Obtenemos referencias a los elementos con id único
+        let obj1 = document.getElementById("resultado1");
+        let obj2 = document.getElementById("resultado2");
+        let obj3 = document.getElementById("resultado3");
+
+        // Resultado 1: incrementa cada valor en 1
+        obj1.innerHTML = "Resultado 1: " + numeros.map((valor) => valor + 1);
+
+        // Resultado 2: suma a cada valor su índice en el array
+        obj2.innerHTML = "Resultado 2: " + numeros.map((v, i) => v + i);
+
+        // Resultado 3: mismo resultado que el anterior usando una función de bloque
+        obj3.innerHTML =
+          "Resultado 3: " +
+          numeros.map((v, i) => {
+            return v + i;
+          });
+
+        /* REDUCE EJEMPLOS */
+        // Suma de todos los elementos en `numeros`
+        let suma = numeros.reduce((acc, v) => acc + v, 0);
+        console.log("Suma de numeros:", suma);
+
+        // Concatenación de todos los elementos en `numeros2`
+        let numeros2 = ["uno", "dos", "tres", "cuatro"];
+        let concatenado = numeros2.reduce((a, b) => a + " " + b);
+        console.log("Concatenación de numeros2:", concatenado);
+      }
+    </script>
+  </body>
+</html>

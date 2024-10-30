@@ -1,61 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
+<html>
+  <head>
+    <title>retos JavaScript</title>
+  </head>
+  <body>
+    <h1>retos JavaScript</h1>
+    <p id="re1"></p>
+    <p id="re2"></p>
+    <p id="re3"></p>
+    <p id="re4"></p>
+    <p id="re5"></p>
+    <p id="re6"></p>
+    <p id="re7"></p>
+    ¡
     <script>
-        var cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
-        var carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+      var cars = [
+        "Saab",
+        "Volvo",
+        "BMW",
+        ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"],
+      ];
+      var carrakos = [
+        "Chevrolet",
+        "Tesla",
+        "BMW",
+        ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+        ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
+      ];
+      //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
+      let lista = []; // Inicializa un array vacío que contendrá todos los elementos combinados.
 
-        // Función para aplanar un array y eliminar duplicados
-        function flattenAndUnique(arr) {
-            const flatArray = arr.flat(Infinity);
-            return [...new Set(flatArray)];
+      cars.flat(2).map((e) => lista.push(e)) && // `&&` es usado para encadenar otra operación de mapeo en `carrakos.flat(2)`.
+        // Explicación:
+        // 1. `cars.flat(2)`: Aplana el array `cars` hasta dos niveles de profundidad.
+        //    - Esto significa que si `cars` es un array con arrays anidados, este proceso lo convertirá en un array simple hasta dos niveles.
+        // 2. `.map((e) => lista.push(e))`: Recorre cada elemento `e` de este array aplanado.
+        //    - Cada elemento se agrega a `lista` usando `lista.push(e)`.
+
+        carrakos.flat(2).map((e) => {
+          if (!lista.includes(e)) {
+            lista.push(e);
+          }
+        });
+      // Explicación:
+      // 1. `carrakos.flat(2)`: Aplana el array `carrakos` hasta dos niveles de profundidad, al igual que `cars`.
+      // 2. `.map((e) => { ... })`: Recorre cada elemento `e` de este array aplanado.
+      // 3. `if (!lista.includes(e)) { lista.push(e); }`:
+      //    - Para cada elemento `e`, verifica si `lista` ya lo contiene usando `lista.includes(e)`.
+      //    - Si `lista` no lo contiene (`!lista.includes(e)`), lo agrega con `lista.push(e)`.
+      //    - Esto previene duplicados, agregando solo elementos únicos a `lista`.
+
+      document.getElementById("re1").innerHTML = lista;
+      // Actualiza el contenido del elemento HTML con id "re1" para mostrar el contenido de `lista`.
+
+      //Alguien sabría decirme los coches de carrakos que no estén en cars?
+      let cochesUnicos = [];
+      carrakos.flat(2).map((e) => {
+        if (!cars.flat(2).includes(e)) {
+          cochesUnicos.push(e);
         }
+      });
+      document.getElementById("re2").innerHTML = cochesUnicos;
 
-        // Lista única de coches de ambos arrays
-        var uniqueCars = flattenAndUnique([...cars, ...carrakos]);
-        console.log("Coches únicos:", uniqueCars);
+      var cars = [
+        "Saab",
+        "Volvo",
+        "BMW",
+        ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"],
+      ];
+      var buddies = [
+        { firstName: "Chuck", lastName: "Norris", car: "Honda" },
+        { firstName: "Yakie", lastName: "Chang", car: "BMV" },
+        { firstName: "Bruce", lastName: "Lee", car: "Honda" },
+        { firstName: "Steven", lastName: "Seagal", car: "Lada" },
+      ];
+      //-Nombre y apellidos de los buddies que usan un Honda
+      let usanHonda = buddies
+        .filter((e) => e.car === "Honda")
+        .map((e) => e.firstName + " usa " + e.car);
+      document.getElementById("re3").innerHTML = usanHonda;
+      //-Marcas utilizadas por los buddies
+      let marcas = [];
+      buddies.map((e) => {
+        if (!marcas.includes(e.car)) {
+          marcas.push(e.car);
+        }
+      });
+      document.getElementById("re4").innerHTML = marcas;
+      //-Marcas no utilizadas por los buddies.
+      // Suponiendo que 'lista' es un array que contiene marcas de coches.
+      // Por ejemplo:
+      let marcas2 = lista.reduce((acumulador, e) => {
+        // Si 'e' no está en los coches de los buddies, se añade al acumulador.
+        if (!buddies.some((v) => v.car === e)) {
+          acumulador.push(e);
+        }
+        return acumulador; // Retorna el acumulador para la siguiente iteración.
+      }, []); // Se agrega un array vacío como valor inicial para el acumulador.
 
-        // Coches en carrakos que no están en cars
-        var flatCarrakos = flattenAndUnique(carrakos);
-        var carsNotInCars = flatCarrakos.filter(k => !uniqueCars.includes(k));
-        console.log("Coches en carrakos que no están en cars:", carsNotInCars);
+      document.getElementById("re5").innerHTML = marcas2; // Muestra las marcas no utilizadas en el elemento con id "re5".
 
-        var buddies = [
-            { firstName: "Chuck", lastName: "Norris", car: "Honda" },
-            { firstName: "Yakie", lastName: "Chang", car: "BMV" },
-            { firstName: "Bruce", lastName: "Lee", car: "Honda" },
-            { firstName: "Steven", lastName: "Seagal", car: "Lada" }
-        ];
+      //-Cuantas marcas han sido utilizadas
+      let contadorUtilizadas = lista.reduce((acc, e) => {
+        if (buddies.some((v) => e === v.car) && !acc.includes(e)) {
+          acc.push(e);
+        }
+        return acc;
+      }, []).length;
+      document.getElementById("re6").innerHTML = contadorUtilizadas;
 
-        // Nombres de los buddies que usan un Honda
-        var hondaBuddies = buddies.filter(f => f.car === "Honda")
-            .map(v => v.firstName + " " + v.lastName);
-        console.log("Buddies que usan Honda:", hondaBuddies);
+      //-Cuantas marcas no han sido utilizadas
+      // Contar cuántas marcas de coches en 'lista' no están siendo utilizadas por los buddies
+      let contadorNoUtilizadas = lista.reduce((acc, e) => {
+        // Verificamos si el coche 'e' no está en el array de coches de 'buddies'
+        if (buddies.every((v) => e !== v.car)) {
+          // Si el coche 'e' no se encuentra en 'buddies', lo agregamos al acumulador
+          acc.push(e);
+        }
+        return acc; // Retornamos el acumulador para la siguiente iteración
+      }, []).length; // Finalmente, obtenemos la longitud del acumulador
 
-        // Marcas utilizadas por los buddies
-        var usedBrands = [...new Set(buddies.map(b => b.car))];
-        console.log("Marcas utilizadas por los buddies:", usedBrands);
-
-        // Marcas no utilizadas por los buddies
-        var unusedBrands = uniqueCars.filter(car => !usedBrands.includes(car));
-        console.log("Marcas no utilizadas por los buddies:", unusedBrands);
-
-        // Contar marcas utilizadas
-        var countUsedBrands = usedBrands.length;
-        console.log("Cantidad de marcas utilizadas:", countUsedBrands);
-
-        // Contar marcas no utilizadas
-        var countUnusedBrands = unusedBrands.length;
-        console.log("Cantidad de marcas no utilizadas:", countUnusedBrands);
-
+      // Actualizamos el contenido del elemento HTML con el número de coches no utilizados
+      document.getElementById("re").innerHTML = contadorNoUtilizadas;
     </script>
-</body>
-
+  </body>
 </html>

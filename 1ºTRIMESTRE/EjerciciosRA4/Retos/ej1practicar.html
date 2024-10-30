@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1 práctico</title>
+  </head>
+  <body>
+    <script>
+      const alumnos = [
+        {
+          nombre: "Fulanito",
+          notas: {
+            DWEC: 8,
+            DWESE: 7,
+            ED: 6,
+            SOSO: 5,
+            BBDD: 4,
+            PROG: 3,
+            EINEM: 2,
+          },
+        },
+        {
+          nombre: "Menganito",
+          notas: {
+            DWEC: 5,
+            DWESE: 6,
+            ED: 7,
+            SOSO: 5,
+            BBDD: 3,
+            PROG: 4,
+            EINEM: 6,
+          },
+        },
+        {
+          nombre: "Cetanito",
+          notas: {
+            DWEC: 10,
+            DWESE: 9,
+            ED: 8,
+            SOSO: 7,
+            BBDD: 6,
+            PROG: 5,
+            EINEM: 4,
+          },
+        },
+      ];
+      function sumaYMediaDWEC(alumnos) {
+        // Usamos map para extraer las notas de DWEC de cada alumno
+        let notas = alumnos.map((alumno) => alumno.notas.DWEC);
+
+        // Calculamos la suma de las notas usando reduce
+        let suma = notas.reduce((acc, nota) => acc + nota, 0);
+
+        // Calculamos la media
+        let media = suma / notas.length;
+
+        // Devolvemos un objeto con la suma y la media
+        return {
+          suma: suma,
+          media: media,
+        };
+      }
+
+      // Llamamos a la función y guardamos el resultado
+      const resultados = sumaYMediaDWEC(alumnos);
+
+      // Mostramos los resultados en la consola
+      console.log("Suma de notas: ", resultados.suma);
+      console.log("Media de notas DWEC: ", resultados.media);
+      function alumnosConNotasAltas(alumnos, materia) {
+        return alumnos.filter((alumno) => alumno.notas[materia] >= 7);
+      }
+      const notasAltas = alumnosConNotasAltas(alumnos, "DWEC");
+      console.log(notasAltas);
+
+      function contarAprobados(alumnos, materia) {
+        return alumnos.filter((alumno) => alumno.notas[materia] >= 5).length;
+      }
+      const aprobados = contarAprobados(alumnos, "EINEM");
+      console.log(aprobados);
+
+      function mejoresAlumnos(alumnos) {
+        // Paso 1: Calcular la media de las notas para cada alumno
+        const alumnosConMedia = alumnos.map((alumno) => {
+          // Calculamos la suma de las notas
+          const sumaNotas = Object.values(alumno.notas).reduce(
+            (acc, nota) => acc + nota,
+            0
+          );
+          // Calculamos la media dividiendo la suma por el número de asignaturas
+          const media = sumaNotas / Object.values(alumno.notas).length;
+          // Devolvemos un nuevo objeto con el nombre y la media
+          return {
+            nombre: alumno.nombre,
+            media: media,
+          };
+        });
+
+        // Paso 2: Ordenar los alumnos por media de mayor a menor
+        alumnosConMedia.sort((a, b) => b.media - a.media);
+
+        return alumnosConMedia; // Devolvemos la lista ordenada
+      }
+
+      // Llamamos a la función y mostramos el resultado
+      const mejores = mejoresAlumnos(alumnos);
+      console.log(mejores);
+    </script>
+  </body>
+</html>
