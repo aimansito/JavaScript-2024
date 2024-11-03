@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const alumno = {
+        matematicas: 8,
+        historia: 7,
+        ciencias: 9,
+        ingles: 6,
+      };
+
+      //usa object.values para obtener las notas y calcula el promedio
+      const notas = Object.values(alumno);
+
+      const promedio = notas.reduce((acc,n)=>acc+n,0) / notas.length;
+
+      console.log("Las notas del alumno son: ",notas);
+      console.log("El promedio de las notas es: ", promedio);
+      
+    </script>
+  </body>
+</html>

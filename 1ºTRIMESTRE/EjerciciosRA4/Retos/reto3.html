@@ -50,7 +50,7 @@
         };
         //se pide la suma y la media de las notas de DWEC en tres líneas
         //obtener las notas de DWEC de todos los alumnos
-        let notasDWEC = alumnos.alumnos.map(alumno => alumno.notas.DWEC);
+        let notasDWEC = alumnos.alumnos.map((alumno) => alumno.notas.DWEC);
         //CALCULAR LA SUMA DE LAS NOTAS
         let sumaNotasDWEC = notasDWEC.reduce((acc,nota)=>acc+nota,0);
         //calcular la media de las notas

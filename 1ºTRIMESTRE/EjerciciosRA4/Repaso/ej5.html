@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const estudiantes = [
+        {
+          nombre: "Ana",
+          edad: 22,
+          notas: {
+            matematicas: 8,
+            historia: 6,
+            ciencias: 7,
+          },
+        },
+        {
+          nombre: "Luis",
+          edad: 19,
+          notas: {
+            matematicas: 4,
+            historia: 9,
+            ciencias: 5,
+          },
+        },
+        {
+          nombre: "Carlos",
+          edad: 21,
+          notas: {
+            matematicas: 9,
+            historia: 5,
+            ciencias: 8,
+          },
+        },
+        {
+          nombre: "Laura",
+          edad: 18,
+          notas: {
+            matematicas: 7,
+            historia: 7,
+            ciencias: 7,
+          },
+        },
+      ];
+
+      // Filtrar los estudiantes que son mayores de 18 años.
+      let resultado1 = estudiantes
+      .filter((e)=>e.edad>=18);
+      console.log(resultado1);
+
+      //Calcular la media de las notas en matemáticas de esos estudiantes filtrados.
+      notasMat = resultado1.map((e)=>e.notas.matematicas);
+      let sumaMat = notasMat.reduce((acc,n)=>acc+n,0);
+      let mediaMat = sumaMat / notasMat.length;
+      console.log(mediaMat);
+      //Encontrar si al menos un estudiante ha aprobado en matematicas
+      let alguno = resultado1.filter((e)=>e.notas.matematicas>=5);
+      console.log(alguno);
+      //Crear un nuevo array con los nombres estudiantes que tienen una media superior a 7 en todas las asignaturas
+      let resultado4 = estudiantes
+      .filter((e)=>{
+        //obtener las notas del estudiante
+        let notas = Object.values(e.notas);
+        //calcular la media de las notas
+        let media = notas.reduce((acc,n)=>acc+n,0)/notas.length;
+        // devolver si la media es mayor que 7
+        return media >= 7;
+      })
+      .map((e)=>e.nombre);
+      console.log(resultado4);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const estudiantes = [
+            { nombre: "Ana", notas: { matematicas: 8 } },
+            { nombre: "Luis", notas: { matematicas: 7 } },
+            { nombre: "Carlos", notas: { matematicas: 9 } }
+        ];
+        let resultado = estudiantes.find((estudiante)=>estudiante.notas.matematicas===7);
+        console.log(resultado);
+    </script>
+</body>
+
+</html>

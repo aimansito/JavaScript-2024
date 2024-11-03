@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const estudiantes = [
+        { nombre: "Ana", altura: 1.7 },
+        { nombre: "Luis", altura: 1.85 },
+        { nombre: "Carlos", altura: 1.78 },
+        { nombre: "Laura", altura: 1.82 },
+      ];
+      let resultado = estudiantes
+        .filter((e) => e.altura >= 1.8)
+        .map((e) => e.nombre);
+      console.log(resultado);
+      // verificar si todos los estudiantes tienen una altura de al menos 1.80
+      let todosAltos = estudiantes.every((e) => e.altura >= 1.8);
+      console.log(todosAltos); // Esto mostrará true o false
+      // verificar si al menos uno de los estudiantes tiene una altura de al menos 1.80
+      let algunoAlto = estudiantes.some((e) => e.altura >= 1.8);
+      console.log(algunoAlto); // Esto mostrará true o false
+    </script>
+  </body>
+</html>

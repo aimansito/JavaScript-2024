@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const ciudades = [
+        { nombre: "Estepona", codigoPostal: 29680 },
+        { nombre: "Marbella", codigoPostal: 29601 },
+        { nombre: "Malaga", codigoPostal: 29001 },
+        { nombre: "Granada", codigoPostal: 18001 },
+        { nombre: "Sevilla", codigoPostal: 41001 },
+      ];
+      let resultado = ciudades
+        .filter(
+          (c) =>
+            c.nombre.startsWith("M") &&
+            c.codigoPostal > 29000 &&
+            c.codigoPostal < 29999
+        )
+        .map((c) => c.codigoPostal);
+      console.log(resultado);
+    </script>
+  </body>
+</html>

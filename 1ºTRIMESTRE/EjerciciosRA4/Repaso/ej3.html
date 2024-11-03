@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 3</title>
+  </head>
+  <body>
+        <h1>Calculadora de medias</h1>
+        <p id="resultado"></p>
+    <script>
+      const estudiantes = [
+        { nombre: "Ana", notas: { matematicas: 8, historia: 6, ciencias: 7 } },
+        { nombre: "Luis", notas: { matematicas: 7, historia: 9, ciencias: 6 } },
+        {
+          nombre: "Carlos",
+          notas: { matematicas: 9, historia: 5, ciencias: 8 },
+        },
+      ];
+      let notas = estudiantes.map((e)=>e.notas.historia);
+      let media = notas.reduce((ac,m)=>ac+m,0) / notas.length;
+      document.getElementById("resultado").innerHTML=media;
+    </script>
+  </body>
+</html>

@@ -1,31 +1,65 @@
-<html>
-
-<head>
-    <title>retos JavaScript</title>
-</head>
-
-<body>
-    <h1>retos JavaScript</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reto 4</title>
+  </head>
+  <body>
     <script>
+      var alumnos = {
+        alumnos: [
+          {
+            nombre: "Fulanito",
+            notas: {
+              DWEC: 8,
+              DWESE: 0.71,
+              ED: 7.04,
+              SSOO: 3.37,
+              BBDD: 0.22,
+              PROG: 1.09,
+              EINEM: 6.17,
+            },
+          },
+          {
+            nombre: "Menganito",
+            notas: {
+              DWEC: 7,
+              DWESE: 0.71,
+              ED: 7.04,
+              SSOO: 3.37,
+              BBDD: 0.22,
+              PROG: 1.09,
+              EINEM: 6.17,
+            },
+          },
+          {
+            nombre: "Cetanito",
+            notas: {
+              DWEC: 6,
+              DWESE: 0.71,
+              ED: 7.04,
+              SSOO: 3.37,
+              BBDD: 0.22,
+              PROG: 1.09,
+              EINEM: 6.17,
+            },
+          },
+        ],
+      };
+      // Accede a las notas de todos los alumnos y aplanar el array resultante
+      let notas = alumnos.alumnos
+        .map(
+          (v) => Object.values(v.notas) // Obtener un array de notas para cada alumno
+        )
+        .flat(Infinity); // Aplanar el array de arrays en un solo array
 
-
-        let frutas = ["aguacate", "pera", "manzana", "naranja", "tomate", "granada", "mango", "litchi", "nispero"];
-        let tropicales = ["aguacate", "mango", "litchi", "nispero"];
-        let tropicStock = [{ fruta: "aguacate", stock: 50 }, { fruta: "mango", stock: 10 }, { fruta: "litchi", stock: 20 }, { fruta: "nispero", stock: 25 }];
-        // Frutas tropicales
-        let frutasTropicales = frutas.filter(fruta => tropicales.includes(fruta));
-        console.log("Frutas tropicales:", frutasTropicales);
-
-        // Frutas no tropicales
-        let frutasNoTropicales = frutas.filter(fruta => !tropicales.includes(fruta));
-        console.log("Frutas no tropicales:", frutasNoTropicales);
-
-        // Nombres de las frutas con un stock mayor de 21
-        let frutasConStockMayor21 = tropicStock.filter(item => item.stock > 21).map(item => item.fruta);
-        console.log("Frutas con stock mayor a 21:", frutasConStockMayor21);
-
+      // Calcular y mostrar la media de todas las notas
+      console.log(
+        "La media de todas las notas es: " +
+          notas.reduce((suma, v) => suma + v) / // Sumar todas las notas
+            notas.length // Dividir la suma total por el número de notas
+      );
     </script>
-
-</body>
-
+  </body>
 </html>

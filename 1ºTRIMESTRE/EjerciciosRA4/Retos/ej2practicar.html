@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const estudiantes = [
+        {
+          nombre: "Carlos",
+          asignaturas: { Matemáticas: 7, Física: 8, Química: 6 },
+        },
+        {
+          nombre: "Lucía",
+          asignaturas: { Matemáticas: 9, Física: 6, Química: 7 },
+        },
+        {
+          nombre: "Miguel",
+          asignaturas: { Matemáticas: 5, Física: 5, Química: 4 },
+        },
+        {
+          nombre: "Sara",
+          asignaturas: { Matemáticas: 10, Física: 9, Química: 8 },
+        },
+        {
+          nombre: "Laura",
+          asignaturas: { Matemáticas: 6, Física: 7, Química: 6 },
+        },
+      ];
+      function aprobadosFisica(estudiantes) {
+        return estudiantes
+          .filter((estudiante) => estudiante.asignaturas.Física >= 6)
+          .map((estudiante) => estudiante.nombre);
+      }
+      let resultado1 = aprobadosFisica(estudiantes);
+      console.log(resultado1);
+      function mediaQuimica(estudiantes) {
+        // crear array con todas las notas de quimica
+        let notasQ = estudiantes.map(
+          (estudiante) => estudiante.asignaturas.Química
+        );
+        // sumar todas las notas con reduce
+        let sumaNotas = notasQuimica.reduce(
+          (acumulador, nota) => acumulador + nota,
+          0
+        );
+        //dividir la suma por la cantidad de notas para obtener la media
+        let media = sumaNotas / notasQ.length;
+        return media;
+      }
+      let resultado2 = mediaQuimica(estudiantes);
+      console.log(resultado2);
+      function promedio(estudiantes) {
+        return estudiantes.map((estudiante) => {
+          let notas = Object.values(estudiante.asignaturas);
+
+          let suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
+
+          let promedio = suma / notas.length;
+          return {
+            nombre: estudiante.nombre,
+            promedio: promedio,
+          };
+        });
+      }
+      let resultado3 = promedio(estudiantes);
+      console.log(resultado3);
+    </script>
+  </body>
+</html>
