@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        // Array de nombres de carros, algunos de ellos están anidados en subarrays
+        let carrakos = [
+          "Chevrolet",
+          "Tesla",
+          "BMW",
+          ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+          ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
+        ];
+      
+        // Array de objetos que contiene el nombre de una persona y los carros que posee
+        let xungos = [
+          { nombre: "Bruce Lee", carros: ["Chevrolet", "Tesla", "BMW"] },
+          { nombre: "Steven Seagal", carros: ["Mazda", "Jeep", "Nissan"] },
+          { nombre: "YakiChan", carros: ["Lexus", "Mercedes", "Kia"] },
+        ];
+      
+        // 1. Aplana el array de 'carrakos' para obtener una lista de nombres de carros sin anidación
+        // 2. Mapea cada carro y busca su propietario en el array 'xungos'
+        let lista = carrakos.flat(Infinity).map((c) => {
+          // `aux` busca en 'xungos' una persona que tenga el carro 'c' en su lista de 'carros'
+          let aux = xungos.find((x) => x.carros.find((t) => t === c));
+      
+          // Si se encontró un propietario (aux no es undefined), se crea un objeto con el nombre del carro y el propietario
+          if (aux != undefined) {
+            return { Nombre: c, Propietario: aux.nombre };
+          } else {
+            // Si no se encontró un propietario, se asigna "Nadie" como propietario
+            return { Nombre: c, Propietario: "Nadie" };
+          }
+        });
+      
+        // Muestra el resultado en la consola
+        console.log(lista);
+      </script>
+  </body>
+</html>

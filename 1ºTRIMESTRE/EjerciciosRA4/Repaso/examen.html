@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Retos JavaScript</h1>
+    <script>
+        let iberospoblacion =
+        [{pueblo:"Marmolejo",poblacion:55},{pueblo:"Bujalance",poblacion:50},
+        {pueblo:"Arjona",poblacion:10},
+        {pueblo:"Arjonilla",poblacion:20},{pueblo:"Porcuna",poblacion:25}];
+        let pueblos =
+        ["Bujalance","Marmolejo","Marmolejo","Alharilla","Obulco","Lopera",
+        "Arjona", "Arjonilla","Porcuna"];
+        let iberos = ["Bujalance", "Arjona", "Arjonilla","Porcuna"];
+        //Nombre de las pueblos iberos con un población mayor de veintiuno
+        let resultado = iberospoblacion.filter((i)=>i.poblacion>21).map((i)=>i.pueblo);
+        console.log(resultado);
+        /*
+                console.log(iberospoblacion.filter((value) => {
+            return (iberos.includes(value.pueblo) && value.poblacion > 21);
+        }).map((value) => {
+            return value.pueblo;
+        }));
+        */
+            /*
+                ejercicio 2
+            */
+        
+    </script>        
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <p id="resultado"></p>
+    <script>
+      var warriors = `{
+        "guerreros": [
+            {
+            "tipo": "Samurái",
+            "nombres": ["Musashi", "Yamamoto", "Kenshin", "Tokugawa"]
+            },
+            {
+            "tipo": "Espartano",
+            "nombres": ["Leonidas", "Cleómenes", "Gorgo", "Pleistarco"]
+            },
+            {
+            "tipo": "Caballero",
+            "nombres": ["Lancelot", "Galahad", "Tristán", "Perceval"]
+            },
+            {
+            "tipo": "Gladiador",
+            "nombres": ["Spartacus", "Crixus", "Gannicus", "Oenomaus"]
+            }
+        ]
+        }`;
+      let guerreros = JSON.parse(warriors);
+
+      // Función para encontrar si un guerrero existe y a qué tipo pertenece
+      let encontrarGuerrero = (guerrero) => {
+        let encontrado = guerreros.guerreros.find((g) =>
+          g.nombres.includes(guerrero)
+        );
+
+        if (encontrado) {
+          document.getElementById(
+            "resultado"
+          ).innerHTML = `${guerrero} es un ${encontrado.tipo}.`;
+          return 1;
+        } else {
+          document.getElementById(
+            "resultado"
+          ).innerHTML = `${guerrero} no se encuentra en los registros.`;
+          return 0;
+        }
+      };
+
+      // Ejemplo de uso
+      encontrarGuerrero("Lancelot");
+      encontrarGuerrero("Messi");
+    </script>
+  </body>
+</html>

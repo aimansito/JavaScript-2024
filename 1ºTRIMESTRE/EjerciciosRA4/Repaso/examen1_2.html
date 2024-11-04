@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Se pide que hagas un programa que muestre la media de TODAS las notas de
+      MOMAE de los alumnos que tenemos en nuestro JSON. Ten en cuenta que voy a
+      cambiar los datos del array para comprobar que funciona tu programa.
+    </p>
+    <script>
+      var valumnos = {
+        alumnos: [
+          {
+            nombre: "Irenita",
+            notas: {
+              MOMAE: 8,
+              REDES: 0.71,
+              ED: 7.04,
+              SSOO: 3.37,
+              DATABASE: 0.22,
+              PROG: 1.09,
+              FOL: 6.17,
+            },
+          },
+          {
+            nombre: "Marlaskito",
+            notas: {
+              MOMAE: 7,
+              REDES: 0.71,
+              ED: 7.04,
+              SSOO: 3.37,
+              DATABASE: 0.22,
+              PROG: 1.09,
+              FOL: 6.17,
+            },
+          },
+          {
+            nombre: "Bolañitos",
+            notas: {
+              MOMAE: 6,
+              REDES: 0.71,
+              ED: 7.04,
+              SSOO: 3.37,
+              DATABASE: 0.22,
+              PROG: 1.09,
+              FOL: 6.17,
+            },
+          },
+        ],
+      };
+      // ESCRIBE TU CÓDIGO AQUÍ
+      let notas = valumnos.alumnos.map((n)=>n.notas.MOMAE);
+      let media = notas.reduce((acc,n)=>acc+n,0) / notas.length;
+
+
+      console.log(media);
+    </script>
+  </body>
+</html>

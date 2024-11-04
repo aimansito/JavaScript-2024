@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reto 11</title>
+  </head>
+  <body>
+    <p id="resultado"></p>
+    <script>
+      var vikings =
+        '{"vikingos":[{"reino":"Noruega","reyes":["Hakon","Harald",["Ivar",["Olaf","Lars","Lasse"],"Bjorn"],"Ragnar"]},{"reino":"Dinamarca","reyes":["Frodo","Hamming",["Angantyr","Sarunas"],"Horik"]}]}';
+      // skriv inn koden din her. Vær forsiktig med at json-en jukser. Det er ikke en matrise, men et objekt.
+      // Realiza una función flecha que dado el nombre de un vikingo diga si fue un rey o no.
+      let vikingos = JSON.parse(vikings);
+      console.log(vikingos);
+      let vk = vikingos.vikingos.map((v)=>v.reyes);
+      vk.flat(Infinity);
+      console.log(vk);
+      function esRey(rey){
+        let resultado = 0;
+        var encontrado = vikingos.find((a)=>a===rey);
+        if(encontrado){
+            console.log(rey+ " es Rey");
+            resultado = 1;
+        }else{
+            console.log(rey+ "no es Rey");
+        }
+        return resultado;
+      }
+    </script>
+  </body>
+</html>
