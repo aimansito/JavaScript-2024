@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RETO 10</title>
+  </head>
+  <body>
+    <body>
+        <h1>RETO 10. VIKINGOS</h1>
+        <p id="comunicado"></p>
+    <script>
+    var vikings = '{"vikingos":[{"reino":"Noruega","reyes":["Hakon","Harald","Ivar","Olaf","Bjorn","Ragnar"]},{"reino":"Dinamarca","reyes":["Frodo","Hamming","Angantyr","Horik"]}]}';
+    // skriv inn koden din her. Vær forsiktig med at json-en jukser. Det er ikke en matrise, men et objekt.
+    // Realiza una función flecha que dado el nombre de un vikingo diga si fue un rey o no.
+    let vikingos = JSON.parse(vikings)
+    console.log(vikingos)
+    let encontrarRey = (rey)=>{
+        let found=0;
+        vikingos.vikingos.map( e=>{
+            let rey_tmp = e.reyes.find(f=>f==rey)
+            if (rey_tmp != undefined){
+                document.getElementById("comunicado").innerHTML += "<br>"+rey+" es un rey del reino de"+e.reino;
+                found = 1;
+            }
+        })
+        if (!found) document.getElementById("comunicado").innerHTML += "<br>"+rey+" No es rey ni es na";
+        return found;
+    }
+    
+    encontrarRey("Ivar")
+    encontrarRey("FelipeVI")
+    
+    </script>
+  </body>
+</html>
