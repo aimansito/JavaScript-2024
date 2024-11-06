@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var clientaUno = "";
+      var clientaDos = "";
+      var clientaTres = "";
+      var numclientaUno = 0;
+      var numclientaDos = 0;
+      var numclientaTres = 0;
+      const TORTAS = [
+        "Rodica",
+        "Emma",
+        "Sofia",
+        "Marina",
+        "Valia",
+        "Valia",
+        "Valia",
+        "Valia",
+        "Valia",
+        "Valia",
+        "Emma",
+        "Emma",
+        "Maria",
+        "Marina",
+        "Emma",
+      ];
+      TORTAS.map((e) => {
+        let c = TORTAS.filter((f) => f === e).length;
+        if(c > numclientaUno){
+            numclientaUno = c;
+            clientaUno = t;
+        }else if(c>numclientaDos && t !== clientaUno){
+            numclientaDos = c;
+            clientaDos = t;
+        }else if(c>numclientaTres && t!== clientaDos
+            && t !== clientaUno){
+                numclientaTres = c;
+                clientaTres = t;
+            }
+        )
+      });
+
+      // ESCRIBE AQUÍ TU CÓDIGO
+      console.log(clientaUno + ":" + numclientaUno);
+      console.log(clientaDos + ":" + numclientaDos);
+      console.log(clientaTres + ":" + numclientaTres);
+    </script>
+  </body>
+</html>

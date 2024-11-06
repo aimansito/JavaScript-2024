@@ -38,14 +38,15 @@
       const array5 = [5, 12, 8, 130, 44];
       const array6 = [5, 8, 130, 44];
       const array7 = [5, 8, 44];
-
+      let resultado2 = array5.filter((f)=> f > 10 && array6.find((s)=> s==f && !array7.find((t)=>t===s)))
+      console.log(resultado2);
       /*Se piden los elementos del array 5 mayor de 10 pero que estén en el segundo array y no en
     el tercero.
     Saldría el 130.
     Solamente puede utilizar funciones map, find y filter de arrays. No puede utilizar if, for o
     while.
     Tiene que hacer el recuento solamente en una línea de código.*/
-      console.log(
+    /*  console.log(
         array5.filter(
           (f) =>
             f > 10 &&
@@ -53,7 +54,7 @@
             !array7.find((j) => j === f)
         )
       );
-
+    */
       /* -- Ejercicio 4 -- */
       console.log("EJERCICIO 4");
       var godosJSON =
@@ -66,8 +67,8 @@
     Tiene que hacer el recuento solamente en una línea de código.*/
       // Parseamos el JSON inicial
       let cosas = JSON.parse(godosJSON);
-
-      console.log(cosas.filter((h) => h.hijos.find((t)=> t=="Recesvinto")).map(u => u.nombre));
+      let resultado4 = cosas.reyesgodos.filter((h) => h.hijos.find((t)=> t=="Recesvinto")).map(u => u.nombre);
+      console.log(resultado4);
       console.log("EJERCICIO 5")
     /*Se pide el nombre del padre de los godos que se llamen Recesvinto y que no tengan un hijo
     llamado Leovigildo (solución Suintila).
@@ -76,8 +77,42 @@
     Tiene que hacer el recuento solamente en una línea de código.*/
 
     var godosJSON2 = '{"reyesgodos":[{"nombre":"Alarico","hijos":["Atanagildo","Recesvinto","Leovigildo"]},{"nombre":"RecaredoI","hijos":["Sisebuto","RecaredoII"]},{"nombre":"Suintila","hijos":["Chindasvinto","Recesvinto","Wamba","Égica","Witiza","Rodrigo"]}]} ';
-    console.log(objeto2.filter((h)=> h.hijos.find(e=> e==="Recesvinto") && !h.hijos.find(t=> t === "Leovigildo")).map(u=> u.nombre));
+    console.log(cosas.reyesgodos.filter((h)=> h.hijos.find(e=> e==="Recesvinto") && !h.hijos.find(t=> t === "Leovigildo")).map(u=> u.nombre));
 
+    // contar elementos 
+    let arr = [1,2,3,21,1,1,2,45];
+    let cuantos = 0;
+    let numero=undefined;
+    arr.map((e)=>{
+      let c = arr.filter((f)=>f===e).length
+      if(c>cuantos){
+        cuantos=c
+        numero=e
+      }
+    })
+    console.log(numero+" "+cuantos+" veces");
+    /*
+      Me sabrías decir de este array cuales son los reyes de generación PAR:
+      const REYES = ["Chindatore",["Chindasvinto","Rencesvinto","Lautaro"],["Lauro","Sisebuto",["Fracisbuto","Vigafredo",["Leovigildo","Recaredo"]]],"Amalarico II"];
+
+      Se supone que si un elemento es un subarray es la siguiente generación. Por ejemplo [A,[B]]
+      A es de primera generación
+      B es de segunda generación
+    */
+    let contador = 0;
+    const REYES = ["Chindatore",["Chindasvinto","Rencesvinto","Lautaro"],["Lauro","Sisebuto",["Fracisbuto","Vigafredo",["Leovigildo","Recaredo"]]],"Amalarico II"];
+    const buscaReyes = (array,contador)=>{
+      array.map((e)=>{
+        if(Array.isArray(e)){
+          //llama la funcion con el elemento y contador++
+          buscaReyes(e,contador++);
+        }else{
+          // muestra el rey y dice que es de la generacion contador
+          console.log("El rey ",e,"es de la generacion ", contador)
+        }
+      })
+    }
+    buscaReyes(REYES,contador);
     </script>
   </body>
 </html>
