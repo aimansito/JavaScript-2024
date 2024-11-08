@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const REYES = [
+        "Chindatore",
+        ["Chindasvinto", "Rencesvinto", "Lautaro"],
+        [
+          "Lauro",
+          "Sisebuto",
+          ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]],
+        ],
+        "Amalarico II",
+      ];
+      const buscarUltima = (array,generacion)=>{
+        let maxgen = generacion
+        array.map(e=>{
+            if(Array.isArray(e)){
+                let aux = buscarUltima(e,generacion+1)
+                if(aux>maxgen)maxgen = aux 
+            }
+        })
+        return maxgen;
+      }
+      const mostrarUltima=(array,generacion,cual)=>{
+        let godos = [];
+        array.map(e=>{
+            if(Array.isArray(e)){
+              godos.push(...mostrarUltima(e,generacion+1,cual));
+            }else{
+              if(generacion===cual)console.log(e)  
+            }
+        })
+        return godos;
+      }
+      console.log(REYES);
+      console.log(buscarUltima(REYES,1))
+      console.log(buscarUltima(REYES,1,buscarUltima(REYES,1)))
+    </script>
+  </body>
+</html>
