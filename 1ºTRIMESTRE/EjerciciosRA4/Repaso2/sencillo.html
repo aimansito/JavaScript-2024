@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+                  Ejercicio 1: Utiliza map y filter para calcular los salarios aumentados de empleados con salario bajo.
+                  Tienes un array de objetos empleados con propiedades name y salary.
+                  Se necesita seleccionar empleados con salario menor a 3000 e incrementar su salario en 10%.
+                  Muestralo como un array de objetos
+              */
+      const empleados = [
+        { name: "Alice", salary: 2500 },
+        { name: "Bob", salary: 4000 },
+        { name: "Charlie", salary: 2000 },
+      ];
+      let salario = empleados
+        .filter((e) => e.salary < 3000)
+        .map((w) => w.salary * 1.1);
+      console.log(salario);
+      /*
+              Ejemplo 2: Queremos buscar productos y calcular el total del carrito.
+              Enunciado: Tienes un array de productos con propiedades name, price, y inCart.
+              Queremos calcular el costo total del carrito (usa también reduce).
+            */
+      const products = [
+        { name: "Laptop", price: 1000, inCart: true },
+        { name: "Phone", price: 500, inCart: false },
+        { name: "Tablet", price: 300, inCart: true },
+      ];
+      let precio = products.map((p) => p.price);
+      let suma = precio.reduce((acc, p) => acc + p, 0) / precio.length;
+      console.log(suma);
+
+      /*
+              Ejemplo 3: Se pide calcular el precio total de todos los productos
+              que estén en descuento previamente descontando un 10% de su pvp.
+              Tip: usa también reduce
+            */
+      const productos = [
+        { name: "Laptop", price: 1000, discounted: true },
+        { name: "Phone", price: 500, discounted: false },
+        { name: "Tablet", price: 300, discounted: true },
+        { name: "Monitor", price: 200, discounted: true },
+      ];
+      let descuentos = productos
+        .filter((p) => p.discounted)
+        .map((m) => m.price * 1.1)
+        .reduce((total, precio) => total + precio, 0);
+      console.log(descuentos);
+      /*
+              Ejemplo 4: Encontrar el empleado con el salario más alto en un
+               departamento específico ( "Engineering")
+            */
+      const employees = [
+        { name: "Alice", salary: 3000, department: "HR" },
+        { name: "Bob", salary: 5000, department: "Engineering" },
+        { name: "Charlie", salary: 4000, department: "Engineering" },
+        { name: "Dave", salary: 3500, department: "HR" },
+      ];
+      /*
+            let contador = 0;
+            let resultado = 0;  
+            let dept = employees.filter((e)=>{
+                if(e.salary>contador){
+                    contador = e.salary;
+                    return resultado = e.salary;
+                }
+                return resultado;
+            })
+            */
+      let max = 0;
+      let mejor = null;
+      let resultado = employees.map((e) => {
+        if (e.department === "Engineering" && e.salary > max) {
+          max = e.salary;
+          mejor = e;
+        }
+      });
+      console.log(
+        "El empleado con el salario más alto en Engineering es: ",
+        mejor
+      );
+    </script>
+  </body>
+</html>
