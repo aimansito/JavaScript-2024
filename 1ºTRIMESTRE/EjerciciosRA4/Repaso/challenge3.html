@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function arrayAleatorio(tamaño,max){
+            let lista = [];
+            while(lista.length<tamaño){
+                let numeroRandom = (Math.floor(Math.random()*(max-0+1))+0);
+                let rep = lista.filter(u=> u==numeroRandom).length
+                if(rep===0){
+                    lista.push(numeroRandom);
+                }
+            }
+            return lista;
+        }
+        let lista = arrayAleatorio(10,10);
+        console.log("Este array tiene: "+lista.length);
+        console.log(lista);
+    </script>
+</body>
+</html>

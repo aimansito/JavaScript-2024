@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let texto = "Buenos días Aiman";
+      let cadena = texto.split(" ");
+      let tamaño = cadena.length;
+      function inversionArray(cadena, tamaño) {
+        if (tamaño < 0) {
+          return "";
+        } else {
+          // Invertir la palabra actual antes de concatenarla
+          let palabraInvertida = cadena[tamaño].split("").reverse().join("");
+          return palabraInvertida + " " + inversionArray(cadena, tamaño - 1);
+        }
+      }
+      let resultado = inversionArray(cadena, tamaño).trim(); // Usamos trim() para eliminar espacio extra al final
+      console.log(resultado);
+    </script>
+  </body>
+</html>
