@@ -34,18 +34,16 @@
         let c = TORTAS.filter((f) => f === e).length;
         if(c > numclientaUno){
             numclientaUno = c;
-            clientaUno = t;
-        }else if(c>numclientaDos && t !== clientaUno){
+            clientaUno = e;
+        }else if(c>numclientaDos && e !== clientaUno){
             numclientaDos = c;
-            clientaDos = t;
-        }else if(c>numclientaTres && t!== clientaDos
-            && t !== clientaUno){
+            clientaDos = e;
+        }else if(c>numclientaTres && e!== clientaDos
+            && e !== clientaUno){
                 numclientaTres = c;
-                clientaTres = t;
+                clientaTres = e;
             }
-        )
-      });
-
+          });
       // ESCRIBE AQUÍ TU CÓDIGO
       console.log(clientaUno + ":" + numclientaUno);
       console.log(clientaDos + ":" + numclientaDos);
