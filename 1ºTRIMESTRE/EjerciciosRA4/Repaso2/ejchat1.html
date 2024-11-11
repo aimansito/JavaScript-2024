@@ -88,6 +88,7 @@
         });
       }
       trendy(nombres);
+      console.log("EJERCICIO 3");
       console.log(
         nombreUno + " es la persona mas popular, sale " + cantidadUno
       );
@@ -97,6 +98,14 @@
       console.log(
         nombreTres + " es la tercera persona mas popular, sale " + cantidadTres
       );
+
+      /*
+        Instrucciones: Usa filter para devolver un array de nombres únicos
+        , es decir, elimina los nombres duplicados
+      */
+      const nombresUnicos = nombres.fitler((nombre, index) =>{
+        return nombres.indexOf(nombre) === index;
+      })
     </script>
   </body>
 </html>

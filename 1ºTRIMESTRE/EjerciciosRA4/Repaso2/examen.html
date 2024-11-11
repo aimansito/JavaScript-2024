@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var cars = [
+        "Saab",
+        "Volvo",
+        "BMW",
+        ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"],
+      ];
+      var carrakos = [
+        "Chevrolet",
+        "Tesla",
+        "BMW",
+        ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+        ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
+      ];
+      var newcars = [
+        "Saab",
+        "Volvo",
+        "BMW",
+        ["Honda", "Toyota", ["Lexus", "Volvo", "Lada"], "Hyunday", "Volvo"],
+      ];
+      buddies = [
+        { firstName: "Jonny", lastName: "Rambo", car: "BMW" },
+        { firstName: "Arnold", lastName: "Suarchenager", car: "Honda" },
+        { firstName: "Chuck", lastName: "Norris", car: "Honda" },
+        { firstName: "Yakie", lastName: "Chang", car: "BMW" },
+        { firstName: "Bruce", lastName: "Lee", car: "Honda" },
+        { firstName: "Steven", lastName: "Seagal", car: "Lada" },
+      ];
+
+      let xungas = ["Honda", "Lada"];
+      //EJERCICIO 1
+      console.log("Se repite: ", newcars.flat(Infinity).filter((v)=>v==="Volvo").length);
+      //EJERCICIO 2
+       // Ver si una marca es trendy. Una marca es trendy si esta es utilizada por más de
+        //un buddy. Crea en este mismo ejercicio un array trendy con dichas marcas. Muestra el array
+        //trendy por consola. Se pide que lo realices en 3-4 líneas de código.
+        let marcas = buddies.map(b=>b.car);
+
+        let trendys = marcas.filter((marca,index,arr)=>
+            arr.filter(m=>m===marca).length > 1 && arr.indexOf(marca) === index
+        )
+        console.log("Marcas trendy: ",trendys);
+      //EJERCICIO 3
+      /*
+            Muestra por consola las marcas del array newcars que usen los buddies, que
+            están obviamente en newcars pero que no estén en el array xungas. Muestra el resultado
+            por consola. Puede aparecer alguna marca repetida (no importa). Realiza este programa en
+            una línea de código.
+      */
+        console.log(buddies.map((b)=>b.car).filter((f)=>newcars.flat(Infinity).find((e)=>e===f) && !xungas.find((p)=> p===f)));
+        console.log(buddies.filter((b)=>b.car && !xungas.find((x)=>x===b.car)));
+      //EJERCICIO 4
+      /*
+         di la marca que más que se repita
+      */
+       let contador = 0;
+       let trendy = "";
+       buddies.map((b)=>{
+        let t = buddies.filter((u)=>u.car===b.car).length
+        if(t>contador){
+            contador = t;
+            trendy = b;
+        }
+        return trendy;
+       })
+       console.log("Ejercicio 4",trendy);
+    </script>
+  </body>
+</html>

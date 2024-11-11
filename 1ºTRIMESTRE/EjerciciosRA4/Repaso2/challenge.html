@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ¿Serías capaz en un array de nombres de localizar la persona más popular?
+        */
+        const nombres = [
+                    "Juan",
+                    "Ana",
+                    "Pedro",
+                    "Juan",
+                    "Ana",
+                    "Ana",
+                    "Pedro",
+                    "Maria",
+        ];
+        let contador = 0;
+        let trendy = "";
+        let nombre = nombres.map((n)=>{
+            let nom = nombres.filter((m)=> m===n).length;
+            if(nom>contador){
+                contador=nom;
+                trendy = n;
+            }
+        })
+        console.log(trendy);
+    </script>
+</body>
+</html>

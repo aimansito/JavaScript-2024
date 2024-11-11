@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var cars = [
+        "Saab",
+        "Volvo",
+        "BMW",
+        ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"],
+      ];
+      var carrakos = [
+        "Chevrolet",
+        "Tesla",
+        "BMW",
+        ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+        ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
+      ];
+      //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
+      let unicos = carrakos
+        .flat(Infinity)
+        .filter((c) => c && !cars.flat(Infinity).find((f) => f === c));
+      console.log("EJERCICIO 1 ", unicos);
+      let unicos2 = cars.flat(Infinity).concat(carrakos.flat(Infinity));
+      let resultado1 = unicos2.filter((valor, indice, arr) => {
+        return arr.indexOf(valor) === indice;
+      });
+      console.log(resultado1);
+      //Alguien sabría decirme los coches de carrakos que no estén en cars?
+
+      var cars = [
+        "Saab",
+        "Volvo",
+        "BMW",
+        ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"],
+      ];
+      var coches = [
+        { firstName: "Chuck", lastName: "Norris", car: "Honda" },
+        { firstName: "Yakie", lastName: "Chang", car: "BMV" },
+        { firstName: "Bruce", lastName: "Lee", car: "Honda" },
+        { firstName: "Steven", lastName: "Seagal", car: "Lada" },
+      ];
+      //-Nombre y apellidos de los buddies que usan un Honda
+      var honda = coches
+        .filter((h) => (h.car === "Honda"))
+        .map((c) => c.firstName + " " + c.lastName);
+      console.log(honda);
+      //-Marcas utilizadas por los buddies
+      let m = coches.flat(Infinity).map(buddy=> buddy.car);
+      console.log(m);
+      //-Marcas no utilizadas por los buddies.
+      let coches2 = cars
+        .flat(Infinity)
+        .filter((c) => c && !coches.map((d)=> d.car).find((f) => f === c));
+      console.log(coches2);
+      //-Cuantas marcas han sido utilizadas
+      let num = coches.filter((b)=> b.car).map((c)=>c.car).length;
+      console.log(num);
+      //-Cuantas marcas no han sido utilizadas
+      console.log(coches2.length);
+    </script>
+  </body>
+</html>

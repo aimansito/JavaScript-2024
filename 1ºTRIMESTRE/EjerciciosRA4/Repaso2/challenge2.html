@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ¿Serías capaz en un array de nombres de localizar 
+            las TRES  personas más populares?
+        */
+        let nombres = ["Aiman","Aiman","Aiman","Nicolas","Antonio","Antonio"];
+        let nombreUno = "";
+        let nombreDos = "";
+        let nombreTres = "";
+
+        let cantidadUno = 0;
+        let cantidadDos = 0;
+        let cantidadTres = 0;
+
+        function trendy(nombres){
+            nombres.map((n)=>{
+                let cantidad = nombres.filter((m)=> m===n).length;
+
+                if(cantidad > cantidadUno){
+                    nombreTres = nombreDos;
+                    cantidadTres = cantidadDos;
+                    nombreDos = nombreUno;
+                    cantidadDos = cantidadUno;
+
+                    nombreUno = n;
+                    cantidadUno = cantidad;
+                }else if(cantidad > cantidadDos && n !== nombreUno ){
+                    nombreTres = nombreDos;
+                    cantidadTres = cantidadDos;
+
+                    nombreDos = n;
+                    cantidadDos = cantidad;
+                }else if(cantidad > cantidadTres && n !== nombreUno &&  n !== nombreDos){
+                    nombreTres = n;
+                    cantidadTres = cantidad;
+                }
+            })
+        }
+        trendy(nombres);
+        console.log(nombreUno + " es la persona mas popular, sale " + cantidadUno);
+        console.log(nombreDos + " es la segunda persona mas popular, sale " + cantidadDos);
+        console.log(nombreTres + " es la tercera persona mas popular, sale " + cantidadTres);
+
+    </script>
+</body>
+</html>

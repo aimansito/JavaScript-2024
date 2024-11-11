@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Crea un array que contenga 100 números aleatorios
+             del uno al 1000, pero que no se repita ninguno.
+        */
+        var array_numeros = [];
+        while(array_numeros.length<10){
+            let num_random = Math.floor(Math.random()*1000);
+            if(!array_numeros.find(a=> a==num_random)){
+                array_numeros.push(num_random);
+            }
+        }
+        console.log(array_numeros);
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="resultado"></p>
+    <input type="text" id="ciudad" value="ESTE">
+    <button onclick="dale()">ejecuta</button>    
+    <script>
+      /*Tenemos un array muy grande con elementos de la siguiente estructura:
+        [{28924:"Estepona"},....,{29601:"Marbella"}]
+        Lo que queremos es crear un texto y un botón
+        que ponga buscar que lo que haga sea mostrar el CP y
+        el nombre de la ciudad que coincida o contenga el texto del campo creado.
+        No importan las mayúsculas y minúsculas en*/
+
+      let numeros = [
+        { cp: 28924, ciudad: "ESTEPONA" },
+        { cp: 29601, ciudad: "MARBELLA" },
+      ];
+      function dale(){
+        document.getElementById("resultado").innerHTML="";
+
+        numeros.map((dato)=>{
+            let city = document.getElementById("ciudad").value;
+            if(dato.ciudad.includes(city.toUpperCase())){
+                document.getElementById("resultado").innerHTML = dato.ciudad+"-"+dato.cp;
+
+            }
+        })
+      }
+    </script>
+  </body>
+</html>
