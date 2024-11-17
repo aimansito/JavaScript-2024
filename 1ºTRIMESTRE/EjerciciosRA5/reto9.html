@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Retos JS</h1>
+    <ul id="cambios"></ul>
+    <script>
+      let carrakos = [
+        "Chevrolet",
+        "Tesla",
+        "BMW",
+        ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+        ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
+      ];
+      let xungos = [
+        { nombre: "Bruce Lee", carros: ["Chevrolet", "Tesla", "BMW"] },
+        { nombre: "YakiChan", carros: ["Lexus", "Mercedes", "Kia"] },
+      ];
+
+      let ulPrincipal = document.getElementById("carrakos");
+
+      function crearUlRecursiva(arr, ulRecursiva) {
+            arr.map((e) => {
+
+                if (Array.isArray(e)) {
+                    let nuevaUl = document.createElement("ul");
+                    crearUlRecursiva(e, nuevaUl);
+                    ulRecursiva.appendChild(nuevaUl);
+                } else {
+                    let li = document.createElement("li");
+                    let auxiliar = xungos.find((f) => f.carros.find((g) => g === e));
+                    if (auxiliar != undefined) {
+                        li.innerHTML = e + " de " + auxiliar.nombre;
+                        ulRecursiva.appendChild(li);
+                    } else {
+                        li.innerHTML = e;
+                        ulRecursiva.appendChild(li);
+                    }
+
+                }
+            });
+        }
+      crearUlRecursiva(carrakos,ulPrincipal);
+    </script>
+  </body>
+</html>

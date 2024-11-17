@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Retos JS</h1>
+    <ul id="carrakos"></ul>
+    <script>
+      var carrakos = [
+        "Chevrolet",
+        "Tesla",
+        "BMW",
+        ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+        ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
+      ];
+      let ulPrincipal = document.getElementById("carrakos");
+
+      function crearUlRecursivo(arr, ul) {
+        arr.map((e) => {
+          if (Array.isArray(e)) {
+            // Si el elemento es un array, crea un nuevo <ul>
+            let nuevaUl = document.createElement("ul");
+            crearUlRecursivo(e, nuevaUl); // Llama recursivamente
+            ul.appendChild(nuevaUl); // Agrega el nuevo <ul> al actual
+          } else {
+            // Si el elemento no es un array, crea un <li>
+            let li = document.createElement("li");
+            li.innerHTML = e; // Establece el contenido del <li>
+            ul.appendChild(li); // Agrega el <li> al <ul>
+          }
+        });
+      }
+      crearUlRecursivo(carrakos, ulPrincipal);
+    </script>
+  </body>
+</html>
