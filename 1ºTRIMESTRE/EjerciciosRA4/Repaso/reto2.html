@@ -21,12 +21,20 @@
         ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
       ];
       //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
-      let resultado1 = carrakos.filter((valor,indice,arr)=>{
+      let unicos2 = cars.flat(Infinity).concat(carrakos.flat(Infinity));
+      //  quita los repetidos de un array.
+      let resultado1 = unicos2.filter((valor, indice, arr) => {
         return arr.indexOf(valor) === indice;
-      })
-      console.log(resultado1);
+      });
       //Alguien sabría decirme los coches de carrakos que no estén en cars?
-
+      let lista = [];
+      cars.flat(Infinity).map((c) => {
+        if (!carrakos.find((c2) => c2 === c)) {
+          lista.push(c);
+        }
+      });
+      console.log(lista);
+      console.log(resultado1);
       var cars = [
         "Saab",
         "Volvo",
@@ -41,13 +49,32 @@
       ];
       //-Nombre y apellidos de los buddies que usan un Honda
 
+      console.log(
+        buddies
+          .filter((f) => (f.car = "Honda"))
+          .map((m) => m.firstName + " " + m.lastName)
+      );
+
       //-Marcas utilizadas por los buddies
+
+      console.log(buddies.map((b) => b.car));
 
       //-Marcas no utilizadas por los buddies.
 
+      let coches2 = cars
+        .flat(Infinity)
+        .filter((c) => c && !buddies.map((d)=> d.car).find((f) => f === c));
+      console.log(coches2);
       //-Cuantas marcas han sido utilizadas
 
+      console.log(buddies.map((b) => b.car).length);
+
       //-Cuantas marcas no han sido utilizadas
+
+      console.log(
+        cars.flat(Infinity).filter((c) => !buddies.find((b) => b.car === c))
+          .length
+      );
     </script>
   </body>
 </html>

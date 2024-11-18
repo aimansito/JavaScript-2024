@@ -10,37 +10,27 @@
     <p id="array"></p>
     <p id="popular">La persona más popular es </p>
     <script>
-        let array = ['Maria', 'Lucas', 'Eduardo', 'Cristina', 'Maria', 'Cristina', 'Paco', 'Cristina'];
-        function popular(array) {
-            let popular = [["", 0], ["", 0], ["", 0]];
-            for (let i = 0; i < array.length; i++) {
-                console.log(popular[0][1])
-                if (popular.find(v => v[0] == array[i]) == undefined && popular[0][1] < findMuGuy(array[i], array.length, array)) {
-                    popular[0] = ([array[i], findMuGuy(array[i], array.length, array)])
-                }
-                if (popular.find(v => v[0] == array[i]) == undefined && popular[1][1] < findMuGuy(array[i], array.length, array)) {
-                    popular[1] = ([array[i], findMuGuy(array[i], array.length, array)])
-                }
-                if (popular.find(v => v[0] == array[i]) == undefined && popular[2][1] < findMuGuy(array[i], array.length, array)) {
-                    popular[2] = ([array[i], findMuGuy(array[i], array.length, array)])
-                }
-            }
-            return popular.map(v => v[0]);
-        }
+        let contador1 = 0;
+        let contador2 = 0;
+        let contador3 = 0;
 
-        function findMuGuy(nombre, size, matriz) {
-            if (size >= 0) {
-                if (matriz[size - 1] == nombre) {
-                    return 1 + findMuGuy(nombre, size - 1, matriz);
-                } else {
-                    return findMuGuy(nombre, size - 1, matriz);
-                }
-            } else {
-                return 0;
+        let trendy1 = "";
+        let trendy2 = "";
+        let trendy3 = "";
+        let array = ['Maria', 'Lucas', 'Eduardo', 'Cristina', 'Maria', 'Cristina', 'Paco', 'Cristina'];
+        array.map((a)=>{
+            let cont = array.filter(f=>f===a).length;
+            if(cont>contador){
+                contador1=cont;
+                trendy1 = a;
+            }else if(cont>contador2 && a !==trendy1){
+                contador2=cont;
+                trendy2=a;
+            }else if(cont>contador2 && a !== trendy1 && a !== trendy2){
+                contador3=cont;
+                trendy3=a;
             }
-        }
-        document.getElementById('array').innerHTML = array;
-        document.getElementById('popular').innerHTML += popular(array);
+        })
     </script>
 </body>
 </html>

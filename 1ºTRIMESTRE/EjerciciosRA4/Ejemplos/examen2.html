@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var ciudades = [
+        "Sevilla",
+        "Vigo",
+        "Leon",
+        [
+          "Caceres",
+          "Marbella",
+          ["Algatocin", "Mijas", "Estepona"],
+          "LosBarrios",
+        ],
+      ];
+      var ciudadakas = [
+        "Chevrolet",
+        "Gaucin",
+        "Leon",
+        [
+          "Caceres",
+          "SanRoque",
+          ["Algatocin", "Mijas", "Algeciras"],
+          "LosBarrios",
+        ],
+        [
+          "LaLinea",
+          "Mijas",
+          "LasRozas",
+          ["Majadahonda", "Boadilla", "Mostoles"],
+        ],
+      ];
+      var newciudades = [
+        "Sevilla",
+        "Vigo",
+        "Leon",
+        [
+          "Caceres",
+          "Marbella",
+          ["Algatocin", "Vigo", "Estepona"],
+          "LosBarrios",
+          "Vigo",
+        ],
+      ];
+      coleguillas = [
+        { firstName: "Jonny", lastName: "Rambo", car: "Leon" },
+        { firstName: "Arnold", lastName: "Suarchenager", car: "Caceres" },
+        { firstName: "Chuck", lastName: "Norris", car: "Caceres" },
+        { firstName: "Yakie", lastName: "Chang", car: "Leon" },
+        { firstName: "Bruce", lastName: "Lee", car: "Caceres" },
+        { firstName: "Steven", lastName: "Seagal", car: "Estepona" },
+      ];
+
+      let maleficas = ["Caceres", "Estepona"];
+      //EJERCICIO 1
+      let unicos2 = coleguillas.map((c)=>c.car);
+      let resultado1 = unicos2.filter((valor, indice, arr) => {
+        return arr.filter(c=> c===valor).length>1 && arr.indexOf(valor) === indice;
+      });
+      console.log(resultado1);
+      //EJERCICIO 2
+      console.log(newciudades.flat(Infinity).filter((n)=>coleguillas.find((c)=>c.car===n) && !maleficas.find((m)=>m===n))); 
+      //EJERCICIO 3
+      let contador = 0;
+      let trendy = "";
+      coleguillas.map((c)=>{
+        let d = coleguillas.filter((f)=>f.car===c.car).length;
+        if(d>contador){
+            contador=d;
+            trendy=c.car;
+        }
+      })
+      console.log(trendy);
+      //EJERCICIO 4
+      console.log(newciudades.flat(Infinity).filter((f)=>f=="Vigo").length);
+    </script>
+  </body>
+</html>
