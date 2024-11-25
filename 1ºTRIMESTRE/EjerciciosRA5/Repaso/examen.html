@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ol id="lista">
+        <li>Perico</li>
+        <li>Juanico</li>
+        <ul>
+            <li>Jose</li>
+            <ul>
+                <li>Roman</li>
+                <li>Marco</li>
+                <li>Rodrigo</li>
+            </ul>
+            <li>Jose</li>
+            <li>Lorenzo</li>
+            <ul>
+                <li>Dimas</li>
+                <li>Gestas</li>
+                <li>Malakatos</li>
+                <li>Jose</li>
+            </ul>
+        </ul>
+        <li>Sofoclis</li>
+    </ol>
+    <script>
+        function changeMan(obj, man1, man2) {
+            // Recorro el nodo("lista") y muestro su contenido con un console.log
+            for (let i = 0; i < obj.children.length; i++) {
+                // Hago una llamada recursiva para recorrer todas aquellas sublistas que me pueda encontrar
+                changeMan(obj.children[i], man1, man2);
+
+                // Voy mostrando el contenido del nodo
+                //console.log(obj.children[i].innerHTML.toUpperCase());
+
+                // Si encuentro la palabra 'man1' la cambio por 'man2'
+                if (obj.children[i].innerHTML.toUpperCase() == man1.toUpperCase().trim()) {
+                    obj.children[i].innerHTML = man2;
+                    console.log("Se han realizado cambios");
+                }
+            }
+        }
+        // Llamada a la funcion changeMan
+        changeMan(document.getElementById("lista"), 'Jose', 'PEPE');
+    </script>
+</body>
+</html>

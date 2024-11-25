@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>retos JavaScript</h1>
+    <ul id="frutas"></ul>
+
+    <script>
+        let frutas = ["aguacate", "pera", "manzana", "naranja", "tomate", "granada", "mango", "litchi", "nispero"];
+        let padre = document.getElementById("frutas");
+        frutas.map((v)=>{
+            let li = document.createElement("li");
+            li.innerHTML=v;
+            padre.appendChild(li);
+        })
+    </script>
+</body>
+</html>

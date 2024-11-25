@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="busca">
+        <p >Caperucita roja, era una nena<sub>mu wena</sub> que le gustaba ira casa de su <sup>awelita</sup></p>
+        <p>Un día, un lobito <sup>marvao</sup></p>
+        <p>Se metió en la casa de la awela<sup>a comer puchero</sup> contagarnina</p>
+    </div>
+    <script>
+        let cambiarstrong = (obj)=>{
+            for(let i=0;i<obj.children.length;i++){
+                cambiarstrong(obj.children[i]);
+
+                if(obj.children[i].tagName=="SUP"){
+                    const strong=document.createElement("STRONG");
+                    strong.textContent=obj.children[i].textContent;
+                    obj.children[i].replaceWith(strong);
+
+                }
+            }
+        }
+        cambiarstrong(document.getElementById("busca"));
+    </script>
+    
+</body>
+</html>

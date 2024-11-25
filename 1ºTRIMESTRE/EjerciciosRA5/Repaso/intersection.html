@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    PRIMERA LISTA:
+    <ul id="lista1">
+      <li>manzana</li>
+      <li>pera</li>
+      <ul>
+        <li>conferencia</li>
+        <ul>
+          <li>conferenciaverde</li>
+          <li>conferenciaamarilla</li>
+          <li>conferenciaroja</li>
+        </ul>
+        <li>peradeagua</li>
+        <li>peritadulce</li>
+        <ul>
+          <li>Dimas</li>
+          <li>Gestas</li>
+          <li>Malakatos</li>
+          <li>Jose</li>
+        </ul>
+      </ul>
+      <li>limon</li>
+      <li>limon</li>
+      <li>LIMON</li>
+    </ul>
+    Segunda lista:
+    <ul id="lista2">
+      <li>manzana</li>
+      <li>manzana</li>
+      <li>manzana</li>
+      <li>manzana</li>
+      <li>pera</li>
+      <li>limon</li>
+    </ul>
+
+    <ul id="lista3"></ul>
+
+    <button
+      onclick="intersectionList(document.getElementById('lista1'), 
+                        document.getElementById('lista2'))"
+    >
+      Click me
+    </button>
+    <script>
+      function contenidoListas(obj) {
+        let lista = [];
+        for (let i = 0; i < obj.children.length; i++) {
+          const hijo = obj.children[i];
+          if (hijo.tagName === "LI") {
+            lista.push(hijo.innerHTML.toUpperCase());
+          } else if (hijo.tagName === "UL") {
+            lista = lista.concat(contenidoListas(hijo));
+          }
+        }
+        return lista;
+      }
+
+      function intersectionList(obj1, obj2) {
+        let lista1 = contenidoListas(obj1);
+        let lista2 = contenidoListas(obj2);
+
+        let lista3 = [];
+
+        lista2.map((l2) => {
+          if (
+            lista1.find((l1) => l1 === l2) &&
+            !lista3.find((l3) => l3 === l2)
+          ) {
+            lista3.push(l2);
+          }
+        });
+
+        let ulLista3 = document.getElementById("lista3");
+        ulLista3.innerHTML = "";
+
+        lista3.map((l3) => {
+          let li = document.createElement("li");
+          li.innerHTML = l3;
+          ulLista3.appendChild(li);
+        });
+      }
+    </script>
+  </body>
+</html>

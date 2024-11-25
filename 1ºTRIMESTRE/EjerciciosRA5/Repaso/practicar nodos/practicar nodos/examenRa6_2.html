@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ol id="lista">
+        <li>Perico</li>
+        <li>Juanico</li>
+            <ul>
+                <li>Jose</li>
+                <ul>
+                    <li>Roman</li>
+                    <li>Marco</li>
+                    <li>Rodrigo</li>
+                </ul>
+            <li>Jose</li>
+            <li>Lorenzo</li>
+                <ul>
+                <li>Dimas</li>
+                <li>Gestas</li>
+                <li>Malakatos</li>
+                <li>Jose</li>
+                 </ul>
+            </ul>
+        <li>Sofoclis</li>
+    </ol>
+
+    <script>
+        let changeMan =(obj, man1, man2)=>{
+           for(let i=0; i<obj.children.length;i++){
+                changeMan(obj.children[i],man1,man2);
+                if(obj.children[i].tagName =="LI"&&obj.children[i].textContent.toUpperCase()== man1){
+                    obj.children[i].textContent=man2;
+                }
+           }
+        }
+
+        changeMan(document.getElementById("lista"),'JOSE','PEPE');
+        
+    </script>
+</body>
+
+</html>
