@@ -1,0 +1,6 @@
+[submodule "botones"]
+	path = botones
+	url = /opt/lampp/htdocs/JavaScript-2024/JavaScript-2024/botones
+[submodule "CincoBotones"]
+	path = CincoBotones
+	url = /opt/lampp/htdocs/JavaScript-2024/JavaScript-2024/CincoBotones
