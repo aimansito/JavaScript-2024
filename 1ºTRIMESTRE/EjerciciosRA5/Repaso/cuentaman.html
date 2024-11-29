@@ -4,16 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CuentaMan</title>
-    <style>
-        ol#lista2{
-            color: red;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-    </style>
 </head>
 <body>
-    <p>Tenemos las dos listas que ves aquí debajo</p>
     <ol id="lista1">
         <li>Perico</li>
         <li>Juanico</li>
@@ -47,46 +39,38 @@
             <li>Gestas</li>
         </ul>
     </ol>
-    <strong>
-        <p>Se pide que modifiques la lista con id="lista2" para que tenga este aspecto:<br>
-        
-    <ol>
-        <li>Periquin 0</li>
-        <li>Sofoclis 1</li>
-        <li>Jose 3</li>
-        <ul>
-            <li>Dimas 2</li>
-            <li>Gestas 2</li>
-        </ul>
-    </ol>
-    </p>
-</strong>
-    <p>
-        Si te das cuenta lo que hemos hecho ha sido contar cuantas veces aparece
-        en la primera lista cada elemento de la segunda<br>
-        <br>
-        Requisitos:<br>
-        -Tu programa tendrá que ser legible y tener el menor número de líneas.<br>
-        -Tu programa solo debe utilizar funciones flecha (arrow).<br>
-        -Para el programa JOSE y Jose son la misma persona.<br><br>
-        Otros requisitos (importante):
-        -Se penalizará la utilización de arrays<br>
-        -Se penalizará la utilización de variables globales<br>
-        -Tu programa deberá estar refactorizado para una ejecución eficiente en el
-        cliente. Una función con más de 20 líneas se considera no refactorizada.<br>
-        <br>
-        Ten en cuenta los requisitos en la realización de tu código. Los nodos
-        bajo lista1 y lista2 solo serán de tipo LI y UL (tenlo en cuenta al realizar
-        tu código).<br>
-        <br>
-        Puedes utilizar solamente el libro de texto para consulta pero NO está
-        permitido que utilices Internet ni otro código que hayas escrito con
-        anterioridad. El libro no puede tener añadido nada aparte de lo impreso.<br>
-        La máquina en la que haces el examen tiene que estar limpia de código
-        fuente relacionado con la asignatura. <br>
-    </p>
     <script>
-        
+           function contarNombres(obj,nombre) {
+            nombre=nombre.toUpperCase().trim();
+            let cont=0;
+
+            for (let i = 0; i < obj.children.length; i++) {
+                contarNombres(obj.children[i],nombre);
+                cont += contarNombres(obj.children[i], nombre); 
+                if (obj.children[i].tagName==="LI") {
+                    if (nombre === obj.children[i].innerHTML.toUpperCase()) {
+                        cont++;
+                    }
+                }
+            }
+
+            return cont;
+        }
+        var contador = contarNombres(document.getElementById("lista1"),"jose");
+        console.log("El nombre 'jose' aparece: " + contador + " veces");
+
+        function asignarRecuento(obj) {
+            for (let i = 0; i < obj.children.length; i++) {
+                asignarRecuento(obj.children[i])
+                if (obj.children[i].tagName==="LI") {
+                    let nom = obj.children[i].innerHTML;
+                    let vecesNom = contarNombres(document.getElementById("lista1"),nom);
+                    obj.children[i].innerHTML = obj.children[i].innerHTML  + vecesNom;
+                }
+            }
+        }
+        asignarRecuento(document.getElementById("lista2"))
+
     </script>
 </body>
 </html>
