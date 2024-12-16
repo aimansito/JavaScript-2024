@@ -1,44 +1,47 @@
-import React, {Component} from 'react';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'bootstrap';
+import { Button, Alert } from 'reactstrap';
+import React, { Component } from 'react';
 
-function Botonazo(props){
-  return(
-    <Button onClick={()=> props.clicar(props.pos)} color={props.color}></Button>
-  );
-}
-class App extends Component{
-  constructor(props){
+class App extends Component {
+  constructor(props) {
     super(props);
     this.state = {
-      color: ["primary","secondary","secondary"],
-    }
+      estadoAlerta: false, 
+      estadoAlertaRojo:false,
+    };
   }
-  click(p){
-    if(p==0){
-      this.setState({
-        color:["primary","secondary","secondary"],
-      })
-    }
-    if(p==1){
-      this.setState({
-        color:["secondary","primary","secondary"],
-      })
-    }
-    if(p==2){
-      this.setState({
-        color:["secondary","secondary","primary"],
-      })
-    }
-  }
-  render(){
-    return(
-      <div>
-        <Botonazo clicar={(p)=>this.click(p)} pos={0} color= {this.state.color[0]} /> {" "}
-        <Botonazo clicar={(p)=>this.click(p)} pos={1} color= {this.state.color[1]} /> {" "}
-        <Botonazo clicar={(p)=>this.click(p)} pos={2} color= {this.state.color[2]} /> 
+
+  cambiarEstadoAlerta = () => {
+    this.setState({ estadoAlerta: !this.state.estadoAlerta })
+    this.setState({ estadoAlertaRojo: false })
+  };
+
+  cambiarEstadoAlertaRojo = () => {
+    this.setState({ estadoAlertaRojo: !this.state.estadoAlertaRojo })
+    this.setState({ estadoAlerta: false })
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Button color="primary" onClick={this.cambiarEstadoAlerta}>
+          Click me!
+        </Button>
+        <Button color="danger" onClick={this.cambiarEstadoAlertaRojo}>Click me!</Button>
+        {this.state.estadoAlerta && (
+          <Alert color="info" toggle={this.cambiarEstadoAlerta}>
+            Soy una alerta Azul!
+          </Alert>
+        )}
+        {this.state.estadoAlertaRojo && (
+          <Alert color="danger" toggle={this.cambiarEstadoAlertaRojo}>
+            Soy una alerta rojo!
+          </Alert>
+        )}
       </div>
-    )
+    );
   }
 }
+
 export default App;
