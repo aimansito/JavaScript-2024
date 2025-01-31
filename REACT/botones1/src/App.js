@@ -4,24 +4,21 @@ import { Button, Alert } from 'reactstrap';
 import React, { Component } from 'react';
 
 class App extends Component {
-  constructor(props) {
+  scfasdfddconstructor(props) {
     super(props);
     this.state = {
       estadoAlerta: false, 
       estadoAlertaRojo:false,
     };
   }
-
   cambiarEstadoAlerta = () => {
     this.setState({ estadoAlerta: !this.state.estadoAlerta })
     this.setState({ estadoAlertaRojo: false })
   };
-
   cambiarEstadoAlertaRojo = () => {
     this.setState({ estadoAlertaRojo: !this.state.estadoAlertaRojo })
     this.setState({ estadoAlerta: false })
   };
-
   render() {
     return (
       <div className="App">

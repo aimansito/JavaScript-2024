@@ -1,45 +1,37 @@
- import imagen from './img/reyes/rey_sisebuto.png';
-import imagen1 from './img/reyes/rey_leogivildo.png';
-import imagen2 from './img/reyes/rey_atanagildo.png';
-import imagen3 from './img/reyes/rey_incognito.png';
-import './App.css';
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from 'reactstrap';
 
-function App() {
-  let nombres = ["Atanagildo","Leogivildo","Sisebuto"];
-  const cambiarTexto=(e)=>{
-    if(e.target.innerHTML=="VISTO"){
-      e.target.innerHTML="";
-    }else{
-      e.target.innerHTML="VISTO";
-    }
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      tabla:[{},{nombre:"COCKED PISTOL",medida:"Guerra nuclear inminente", color:"secondary"},
+        {nombre:"FAST PACE",medida:"Paso previo a la guerra nuclear", color: "danger"},
+        {nombre:"ROUND HOUSE",medida:"Incremento en la preparación y movilización de las tropas", color:"warning"},
+        {nombre:"DOUBLE TAKE",medida:"Incremento de la vigilancia por inteligencia y extremar las medidas de seguridad",color:"success"},
+        {nombre:"FADE OUT",medida: "Estado más bajo",color:"primary"}
+      ]
+    };
   }
-  const cambiarImg=(e)=>{
-    if(e.target.src.includes("incognito")){
-      e.target.style.visibility="hidden";
-    }else{
-      e.target.src=imagen3;
-    }
-    e.target.parentNode.style.backgroundColor="white";
+  render(){
+    return(
+      <div className='App'>
+        <Defcon/>
+        <h1>DEFCON</h1>
+        <Button>Conflicto fronterizo(suma 50)</Button>
+        <Button>Lanzamiento cohete(suma 200)</Button>
+        <Button>Retórica belicista(suma 25)</Button>
+      </div>
+    )
   }
-  return (
-    <div className="App">
-      <header className="App-header">
-        <div className='imagenes'>
-         <div className="caja">
-            <img onClick={cambiarImg} src={imagen} alt="sisebuto"/>  
-            <div onClick={cambiarTexto} className="nombre">{nombres[0]}</div>
-         </div>
-         <div className="caja">
-            <img onClick={cambiarImg} src={imagen1} alt="sisebuto"/>  
-            <div onClick={cambiarTexto} className="nombre">{nombres[1]}</div>
-         </div>
-         <div className="caja">
-            <img onClick={cambiarImg} src={imagen2} alt="sisebuto"/>  
-            <div onClick={cambiarTexto} className="nombre">{nombres[2]}</div>
-         </div>
-        </div>
-      </header>
-    </div>
-  );
 }
+function Defcon(props) {
+  return(
+    <>
+      <Button color="primary">Nada de momento</Button>
+    </>
+  )
+}
+
 export default App;
