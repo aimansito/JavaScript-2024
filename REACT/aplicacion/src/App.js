@@ -15,81 +15,56 @@ import {
 
 export default function App() {
   const [logged, setLogged] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [message, setMessage] = useState("");
 
-  const userLogin = (telefono, password) => {
-    if (telefono === "aiman" && password === "2023") {
-      setLogged(true);
-      fetchProducts();
+  const userLogin = async (telefono, password) => {
+    try {
+      const response = await fetch("http://localhost/login.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ telefono, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setLogged(true);
+      } else {
+        setMessage(data.message);
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+      setMessage("Error de conexión con el servidor.");
     }
-  };
-
-  const fetchProducts = () => {
-    const pieles = [
-      {
-        id: 0,
-        imagen:
-          "https://pielparaartesanos.com/cdn/shop/files/Cabra_laminada_oro.jpg",
-        nombre: "Cabra laminada oro",
-        texto: "Cabra laminada con acabado arrugado en color oro",
-      },
-      {
-        id: 0,
-        imagen:
-          "https://pielparaartesanos.com/cdn/shop/files/Vacuno_encerado_lodo.jpg",
-        nombre: "Vacuno_encerado_lodo",
-        texto:
-          "Dale un toque unico y resistente a tus productos artesanales con este material de alta calidad",
-      },
-      {
-        id: 2,
-        imagen: "https://pielparaartesanos.com/cdn/shop/files/RST_420.jpg",
-        nombre: "Vacuno flor burdeos",
-        texto: "la piel de vacuno es ideal para bolsos de calidad",
-      },
-    ];
-    setProducts(pieles);
   };
 
   return (
     <div className="App">
-      {!logged && <AppLogin userLogin={userLogin} />}
-      {logged && (
-        <div className="text-center mt-5">
-          <h2>Has iniciado sesión</h2>
-          <ProductList products={products} />
-        </div>
+      {!logged ? (
+        <AppLogin userLogin={userLogin} message={message} />
+      ) : (
+        <h2 className="text-center mt-5">Has iniciado sesión</h2>
       )}
     </div>
   );
 }
 
-function AppLogin({ userLogin }) {
+function AppLogin({ userLogin, message }) {
   const [password, setPassword] = useState("");
   const [telefono, setTelefono] = useState("");
-  const [info, setInfo] = useState("");
 
   const handleChange = (event) => {
-    setInfo("");
-    const target = event.target;
-    if (target.name === "password") {
-      setPassword(target.value);
-    }
-    if (target.name === "telefono") {
-      setTelefono(target.value);
-    }
+    const { name, value } = event.target;
+    if (name === "password") setPassword(value);
+    if (name === "telefono") setTelefono(value);
   };
 
-  const clicar = () => {
-    if (password === "" || telefono === "") {
-      setInfo("Complete todos los campos");
-    } else {
-      if (telefono === "aiman" && password === "2023") {
-        userLogin(telefono, password);
-      } else {
-        setInfo("Usuario o contraseña incorrectos");
-      }
+  const handleSubmit = () => {
+    if (!telefono || !password) {
+      alert("Complete todos los campos");
+      return;
     }
+    userLogin(telefono, password);
   };
 
   return (
@@ -120,32 +95,11 @@ function AppLogin({ userLogin }) {
                 onChange={handleChange}
               />
             </FormGroup>
-            <Button color="primary" size="lg" block onClick={clicar}>
-              <strong>Iniciar Sesión</strong>
+            <Button color="primary" size="lg" block onClick={handleSubmit}>
+              <strong>Iniciar Sesión</strong>zº
             </Button>
-            <CardText className="text-danger text-center mt-2">{info}</CardText>
+            {message && <CardText className="text-danger text-center mt-2">{message}</CardText>}
           </Form>
-        </Card>
-      </Col>
-    </Row>
-  );
-}
-
-function ProductList({ products }) {
-  return (
-    <Row className="justify-content-center mt-4">
-      <Col sm="6">
-        <Card body>
-          <CardTitle className="text-center" tag="h4">
-            Productos Disponibles
-          </CardTitle>
-          <ul className="list-group">
-            {products.map((product) => (
-              <li key={product.id} className="list-group-item">
-                {product.imagen} - {product.nombre} - {product.texto}
-              </li>
-            ))}
-          </ul>
         </Card>
       </Col>
     </Row>
