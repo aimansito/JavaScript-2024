@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stalingrado</title>
+</head>
+<body>
+    <h1>STALINGRADO</h1>
+    <p id="matriz"></p>
+    <h2 id="ganador"></h2>
+
+    <script>
+         let battlefield = [
+            ["A", "A", "", "", "R", "", "", "", ""],
+            ["A", "A", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "A", "A"],
+            ["", "", "", "", "R", "", "", "A", "A"]
+        ];
+
+        function mostrarMatriz(array){
+            let texto = "";
+            for(let i = 0;i < array.length; i++){
+                for(let j = 0; j < array[i].length; j++){
+                    if(array[i][j]== "")array[i][j]="- ";
+                    texto += array[i][j]
+                }
+                texto += "<br/>";
+            }
+            let m = document.getElementById("matriz").innerHTML = texto;
+        }
+
+
+        function localizar(f,c){
+            let soldado = battlefield[f][c]
+            let bien = "X";
+            
+
+            if(battlefield[f][c]=="A" || battlefield[f][c] == ""){
+                battlefield[f][c] = bien;
+            }
+
+            // izquierda 
+            if(c > 0 && (battlefield[f][c]=="A" || battlefield[f][c]=="")){
+                battlefield[f][c] = bien;
+                localizar(f,c - 1);
+            }
+            // derecha
+            if(c < battlefield[f].length-1 && (battlefield[f][c+1]=="A" || battlefield[f][c+1]=="")){
+                battlefield[f][c+1] = bien;
+                localizar(f,c+1);
+            }
+            // arriba 
+            if(f > 0 && (battlefield[f-1][c]=="A" || battlefield[f+1][c]=="")){
+                battlefield[f+1][c]=bien;
+                localizar(f+1,c);
+            }
+            // abajo 
+            if(f < battlefield.length - 1 && (battlefield[f+1][c]=="A"||battlefield[f+1][c]=="")){
+                battlefield[f+1][c]= bien;
+                localizar(f+1,c);
+            }
+        }
+
+        let ganador = false;
+        for(let i = 0; i < battlefield.length; i++){
+            for(let j = 0; j < battlefield[i].length; j++){
+                if(battlefield[i][j]== "A"){
+                    ganador = true;
+                    break;
+                }
+                break;
+            }
+            if(ganador){
+                document.getElementById("ganador").innerHTML = "ganan los rusos";
+            }else{
+                document.getElementById("ganador").innerHTML="ganan los alemanes";
+            }
+        }
+    </script>
+</body>
+</html>
