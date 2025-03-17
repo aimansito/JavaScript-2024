@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AngryBats</title>
+  </head>
+  <body>
+    <h1>AngryBats</h1>
+    <p id="texto"></p>
+    <script>
+      let bat = [
+        ["P", "P", "G", "H", "H", "R"],
+        ["P", "P", "G", "H", "H", "G"],
+        ["P", "G", "M", "H", "H", "G"],
+        ["G", "R", "M", "H", "G", "G"],
+        ["R", "R", "H", "H", "G", "P"],
+      ];
+      
+      console.log("Matriz original:", bat);
+      
+      function angrybats(fila, columna) {
+        let infectado = "*";
+        let murcielago = "M";
+        let murcielagoInfectado = "m";
+        let humano = "H";
+
+        // Clonar la matriz para modificarla sin alterar la original
+        let bat2 = JSON.parse(JSON.stringify(bat));
+        
+        // Verificar si la posición inicial contiene un murciélago
+        if (bat2[fila][columna] === murcielago) {
+          bat2[fila][columna] = murcielagoInfectado;
+
+          let flag = true;
+          while (flag) {
+            flag = false;
+
+            for (let i = 0; i < bat2.length; i++) {
+              for (let j = 0; j < bat2[i].length; j++) {
+                if (bat2[i][j] === murcielago || bat2[i][j] === humano) {
+                  // Propagación en las direcciones
+                  let posiciones = [
+                    [i - 1, j], // Arriba
+                    [i + 1, j], // Abajo
+                    [i, j - 1], // Izquierda
+                    [i, j + 1], // Derecha
+                  ];
+
+                  for (let [x, y] of posiciones) {
+                    if (x >= 0 && x < bat2.length && y >= 0 && y < bat2[i].length) {
+                      if (bat2[x][y] === infectado || bat2[x][y] === murcielagoInfectado) {
+                        if (bat2[i][j] === murcielago) {
+                          bat2[i][j] = murcielagoInfectado;
+                          flag = true;
+                        } else if (bat2[i][j] === humano) {
+                          bat2[i][j] = infectado;
+                          flag = true;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        return bat2;
+      }
+      
+      function mostrarMatriz(matriz, id) {
+        let contenido = "";
+        for (let i = 0; i < matriz.length; i++) {
+          for (let j = 0; j < matriz[i].length; j++) {
+            contenido += `<span>${matriz[i][j]} | </span>`;
+          }
+          contenido += "<br/>";
+        }
+        document.getElementById(id).innerHTML = contenido;
+      }
+      
+      let resultado = angrybats(2, 2);
+      console.log("Matriz después de la infección:", resultado);
+      mostrarMatriz(resultado, "texto");
+    </script>
+  </body>
+</html>
