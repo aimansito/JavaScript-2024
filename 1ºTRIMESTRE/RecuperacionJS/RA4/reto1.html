@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var cars = [
+        "Saab",
+        "Volvo",
+        "BMW",
+        ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"],
+      ];
+      var carrakos = [
+        "Chevrolet",
+        "Tesla",
+        "BMW",
+        ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+        ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
+      ];
+      //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
+        let unicos = carrakos
+        .flat(Infinity)
+        .filter((c)=> c && !cars.flat(Infinity).find((f)=>f === c));
+        console.log("EJERCICIO 1",unicos);
+
+        let unicos2 = cars.flat(Infinity).concat(carrakos.flat(Infinity));
+        let resultado1 = unicos2.filter((valor, indice, arr)=>{
+            return arr.indexOf(valor) === indice;
+        })
+
+        console.log(resultado1);
+
+      //Alguien sabría decirme los coches de carrakos que no estén en cars?
+
+      var cars = [
+        "Saab",
+        "Volvo",
+        "BMW",
+        ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"],
+      ];
+      var buddies = [
+        { firstName: "Chuck", lastName: "Norris", car: "Honda" },
+        { firstName: "Yakie", lastName: "Chang", car: "BMV" },
+        { firstName: "Bruce", lastName: "Lee", car: "Honda" },
+        { firstName: "Steven", lastName: "Seagal", car: "Lada" },
+      ];
+
+      var carsFlat = cars.flat(Infinity);
+      var cochesNoEnCars = buddies
+      .map((buddy)=> buddy.car)
+      .filter((car)=> !carsFlat.includes(car));
+
+      console.log(cochesNoEnCars);
+
+      //-Nombre y apellidos de los buddies que usan un Honda
+
+      var honda = coches 
+
+      //-Marcas utilizadas por los buddies
+
+      //-Marcas no utilizadas por los buddies.
+
+      //-Cuantas marcas han sido utilizadas
+
+      //-Cuantas marcas no han sido utilizadas
+    </script>
+  </body>
+</html>
