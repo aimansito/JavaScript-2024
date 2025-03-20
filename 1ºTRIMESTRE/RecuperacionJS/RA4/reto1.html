@@ -21,17 +21,17 @@
         ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
       ];
       //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
-        let unicos = carrakos
+      let unicos = carrakos
         .flat(Infinity)
-        .filter((c)=> c && !cars.flat(Infinity).find((f)=>f === c));
-        console.log("EJERCICIO 1",unicos);
+        .filter((c) => c && !cars.flat(Infinity).find((f) => f === c));
+      console.log("EJERCICIO 1", unicos);
 
-        let unicos2 = cars.flat(Infinity).concat(carrakos.flat(Infinity));
-        let resultado1 = unicos2.filter((valor, indice, arr)=>{
-            return arr.indexOf(valor) === indice;
-        })
+      let unicos2 = cars.flat(Infinity).concat(carrakos.flat(Infinity));
+      let resultado1 = unicos2.filter((valor, indice, arr) => {
+        return arr.indexOf(valor) === indice;
+      });
 
-        console.log(resultado1);
+      console.log(resultado1);
 
       //Alguien sabría decirme los coches de carrakos que no estén en cars?
 
@@ -50,14 +50,17 @@
 
       var carsFlat = cars.flat(Infinity);
       var cochesNoEnCars = buddies
-      .map((buddy)=> buddy.car)
-      .filter((car)=> !carsFlat.includes(car));
+        .map((buddy) => buddy.car)
+        .filter((car) => !carsFlat.includes(car));
 
       console.log(cochesNoEnCars);
 
       //-Nombre y apellidos de los buddies que usan un Honda
 
-      var honda = coches 
+      var honda = coches
+        .filter((h) => h.car === "honda")
+        .map((c) => c.firstName + " " + c.lastName);
+      console.log(honda);
 
       //-Marcas utilizadas por los buddies
 
