@@ -63,12 +63,19 @@
       console.log(honda);
 
       //-Marcas utilizadas por los buddies
-
+      let m = coches.flat(Infinity).map((d)=>d.car)
+      console.log(m);
       //-Marcas no utilizadas por los buddies.
+      let coches2 = cars  
+        .flat(Infinity)
+        .filter((c)=> c && !coches.map((d)=>d.car).find((f)=>f===c));
+        console.log(coches2);
 
       //-Cuantas marcas han sido utilizadas
-
+      let num = coches.filter((b)=>b.car).map((c)=>c.car).length;
+      console.log(num);
       //-Cuantas marcas no han sido utilizadas
+      console.log(coches2.length);
     </script>
   </body>
 </html>
